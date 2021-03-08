@@ -1,0 +1,2 @@
+PROMPT='%c %# '
+bindkey -v
