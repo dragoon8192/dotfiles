@@ -1,4 +1,5 @@
 set wildmenu
+set encoding=utf-8
 
 "検索
 "拡張正規表現をデフォルトに
