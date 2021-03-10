@@ -1,7 +1,13 @@
-PROMPT='%c %# '
+PROMPT='%m:%c %# '
 bindkey -v
 
-paths_file="$HOME/.zshrc-paths"
+export HISTFILE="$HOME/.zsh_history"
+export HISTSIZE=1000
+export SAVEHIST=10000
+setopt hist_ignore_dups
+setopt EXTENDED_HISTORY
+
+paths_file="$HOME/.zsh_paths"
 #上から優先したいので逆順に頭に追加
 if [ -f $paths_file ] ;then
     for binpath in $(tac "$paths_file") ;do
