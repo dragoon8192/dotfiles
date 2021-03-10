@@ -1,11 +1,13 @@
 PROMPT='%c %# '
 bindkey -v
 
-for binpath in "/home/linuxbrew/.linuxbrew/bin" "/home/linuxbrew/.linuxbrew/sbin" "/usr/bin" "/usr/local/bin" "$HOME/.local/bin" "$HOME/bin"
-do
-    if [ -d "$binpath" ] ; then
-        addpath="$addpath:$binpath"
-    fi
-done
-export PATH="$addpath:$PATH"
+paths_file="$HOME/.zshrc-paths"
+#上から優先したいので逆順に頭に追加
+if [ -f $paths_file ] ;then
+    for binpath in $(tac "$paths_file") ;do
+        if [ -d "$binpath" ] ; then
+            PATH="$binpath:$PATH"
+        fi
+    done
+fi
 #export DISPLAY=:0.0
