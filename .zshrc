@@ -1,6 +1,7 @@
 PROMPT='%m:%c %# '
 bindkey -v
 
+#履歴
 export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=1000
 export SAVEHIST=10000
@@ -17,3 +18,14 @@ if [ -f $paths_file ] ;then
     done
 fi
 #export DISPLAY=:0.0
+
+#GIT
+autoload -Uz vcs_info
+setopt prompt_subst
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr '%F{yellow}[!]'
+zstyle ':vcs_info:git:*' unstagedstr '%F{red}[+]'
+zstyle ':vcs_info:*' formats '%F{green}%c%u[%b]%f'
+zstyle ':vcs_info:*' actionformats '[%b|%a]'
+precmd () { vcs_info }
+RPROMPT='$vcs_info_msg_0_'
