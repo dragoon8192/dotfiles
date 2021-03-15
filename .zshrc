@@ -1,5 +1,6 @@
 PROMPT='%m:%c %# '
 bindkey -v
+bindkey "jj" vi-cmd-mode
 
 #履歴
 export HISTFILE="$HOME/.zsh_history"
@@ -28,4 +29,4 @@ zstyle ':vcs_info:git:*' unstagedstr '%F{red}[+]'
 zstyle ':vcs_info:*' formats '%F{green}%c%u[%b]%f'
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd () { vcs_info }
-RPROMPT='$vcs_info_msg_0_'
+RPROMPT='$vcs_info_msg_0_' #ここでは展開しないままにすること
