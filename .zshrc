@@ -1,4 +1,4 @@
-PROMPT='%m:%c %# '
+PROMPT='%c %# '
 bindkey -v
 bindkey "jj" vi-cmd-mode
 
