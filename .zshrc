@@ -2,11 +2,16 @@ PROMPT='%c %# '
 bindkey -v
 bindkey "jj" vi-cmd-mode
 
+##補完
+autoload -Uz compinit && compinit
+zstyle ':completion:*' menu select
+setopt CORRECT
+
 ##履歴
 export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=1000
 export SAVEHIST=10000
-setopt hist_ignore_dups
+setopt HIST_IGNORE_DUPS
 setopt EXTENDED_HISTORY
 
 ##PATH
@@ -22,7 +27,7 @@ fi
 
 ##GIT RPROMPT
 autoload -Uz vcs_info
-setopt prompt_subst
+setopt PROMPT_SUBST
 zstyle ':vcs_info:git:*' check-for-changes true
 zstyle ':vcs_info:git:*' stagedstr '%F{yellow}[!]'
 zstyle ':vcs_info:git:*' unstagedstr '%F{red}[+]'
