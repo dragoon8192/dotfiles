@@ -9,6 +9,8 @@
     call plug#begin('~/.vim/plugged')
         "https://github.com/hogehoge/plugin を入れたければ
         "Plug 'hogehoge/plugin'
+        Plug  'altercation/vim-colors-solarized',
+            \ { 'do': 'cp colors/* ~/.vim/colors/' }
         Plug 'syusui-s/scrapbox-vim', { 'for': 'scrapbox' }
         Plug 'Yggdroot/indentLine'
     call plug#end()
@@ -50,8 +52,13 @@ set encoding=utf-8
     set clipboard=unnamed,autoselect
 
 "表示
+"カラーテーマ
+    set background=light
+    colorscheme solarized
+    "solarrizedにターミナルがなってないとき用
+    "let g:solarized_termcolors=256
 "構文ハイライト
-    syntax on
+    syntax enable
 "TAB, 行末スペースの表示
     set list
     set listchars=tab:^\ ,trail:~
