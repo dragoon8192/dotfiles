@@ -1,6 +1,37 @@
-PROMPT='%c %# '
+#VIM操作用
 bindkey -v
 bindkey "jj" vi-cmd-mode
+
+##PROMPT
+#vim modeによる
+function zle-line-init zle-keymap-select {
+    case $KEYMAP in
+        vicmd)
+            VIM_PROMPT='%F{red}-NOR-%f'
+            ;;
+        main|viins)
+            VIM_PROMPT='%F{cyan}<INS>%f'
+            ;;
+    esac
+    PROMPT='%c'$VIM_PROMPT'%# '
+    zle reset-prompt
+}
+zle -N zle-line-init
+zle -N zle-keymap-select
+
+##GIT RPROMPT
+autoload -Uz vcs_info
+setopt PROMPT_SUBST
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr '%F{yellow}[!]'
+zstyle ':vcs_info:git:*' unstagedstr '%F{red}[+]'
+zstyle ':vcs_info:*' formats '%F{cyan}%c%u[%b]%f'
+zstyle ':vcs_info:*' actionformats '[%b|%a]'
+precmd () { vcs_info }
+#ここでは展開しないままにすること
+GIT_RPROMPT='$vcs_info_msg_0_'
+RPROMPT=$GIT_RPROMPT
+
 
 ##補完
 autoload -Uz compinit && compinit
@@ -24,10 +55,8 @@ if [ -f $paths_file ] ;then
         fi
     done
 fi
-
 ##MANPATH
 manpaths_file="$HOME/.zsh_manpaths"
-#上から優先したいので逆順に頭に追加
 if [ -f $manpaths_file ] ;then
     for binmanpath in $(tac "$manpaths_file") ;do
         if [ -d "$binmanpath" ] ; then
@@ -36,14 +65,4 @@ if [ -f $manpaths_file ] ;then
     done
 fi
 
-##GIT RPROMPT
-autoload -Uz vcs_info
-setopt PROMPT_SUBST
-zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr '%F{yellow}[!]'
-zstyle ':vcs_info:git:*' unstagedstr '%F{red}[+]'
-zstyle ':vcs_info:*' formats '%F{green}%c%u[%b]%f'
-zstyle ':vcs_info:*' actionformats '[%b|%a]'
-precmd () { vcs_info }
-#ここでは展開しないままにすること
-RPROMPT='$vcs_info_msg_0_'
+
