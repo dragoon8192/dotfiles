@@ -13,7 +13,7 @@ function zle-line-init zle-keymap-select {
             VIM_PROMPT='%F{cyan}<INS>%f'
             ;;
     esac
-    PROMPT='%c'$VIM_PROMPT'%# '
+    PROMPT=$VIM_PROMPT'%# '
     zle reset-prompt
 }
 zle -N zle-line-init
@@ -29,8 +29,8 @@ zstyle ':vcs_info:*' formats '%F{cyan}%c%u[%b]%f'
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd () { vcs_info }
 #ここでは展開しないままにすること
-GIT_RPROMPT='$vcs_info_msg_0_'
-RPROMPT=$GIT_RPROMPT
+GIT_PROMPT='$vcs_info_msg_0_'
+RPROMPT='[%c]'$GIT_PROMPT
 
 
 ##補完
