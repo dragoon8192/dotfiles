@@ -64,6 +64,12 @@ if [ -f $manpaths_file ] ;then
         fi
     done
 fi
+
+##色設定
+#lsの色
+eval `dircolors ~/etc/dircolors-solarized/dircolors.ansi-light`
+alias ls='ls --color=auto'
+
 ##OSによる分岐
 case ${OSTYPE} in
     darwin*)
