@@ -64,5 +64,12 @@ if [ -f $manpaths_file ] ;then
         fi
     done
 fi
-
-
+##OSによる分岐
+case ${OSTYPE} in
+    darwin*)
+        source ~/.zshrc.darwin
+        ;;
+    linux*)
+        source ~/.zshrc.linux
+        ;;
+esac
