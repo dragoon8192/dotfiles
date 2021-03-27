@@ -1,3 +1,4 @@
+export LANG='ja_JP.UTF-8'
 #VIM操作用
 bindkey -v
 bindkey "jj" vi-cmd-mode
