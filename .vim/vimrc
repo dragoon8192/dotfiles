@@ -1,0 +1,2 @@
+runtime! config/init/*.vim
+runtime! config/plugin/*.vim
