@@ -1,9 +1,13 @@
-" vim-lsp-settings won't detect hls automatically as of today (2020-10-26). Let's teach it:
-if (executable('haskell-language-server-wrapper'))
+if executable('haskell-language-server-wrapper')
     au User lsp_setup call lsp#register_server({
         \ 'name': 'haskell-language-server-wrapper',
         \ 'cmd': {server_info->['haskell-language-server-wrapper', '--lsp']},
-        \ 'whitelist': ['haskell'],
+        \ 'root_uri':{server_info->lsp#utils#path_to_uri(
+        \     lsp#utils#find_nearest_parent_file_directory(
+        \         lsp#utils#get_buffer_path(),
+        \         ['.cabal', 'stack.yaml', 'cabal.project', 'package.yaml', 'hie.yaml', '.git'],
+        \     ))},
+        \ 'whitelist': ['haskell', 'lhaskell'],
         \ })
 endif
 

@@ -11,7 +11,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'vim-jp/vimdoc-ja'
     Plug 'altercation/vim-colors-solarized'
     Plug 'prabirshrestha/vim-lsp'
-    Plug 'mattn/vim-lsp-settings'
+    "Plug 'mattn/vim-lsp-settings'
     Plug 'prabirshrestha/asyncomplete.vim'
     Plug 'prabirshrestha/asyncomplete-lsp.vim'
     "Plug 'syusui-s/scrapbox-vim', { 'for': 'scrapbox' }
