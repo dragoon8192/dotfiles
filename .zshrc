@@ -49,8 +49,10 @@ RPROMPT='[%c]'$GIT_PROMPT
 
 ##補完
 autoload -Uz compinit && compinit
+autoload -Uz bashcompinit && bashcompinit
 zstyle ':completion:*' menu select
 setopt CORRECT
+eval "$(stack --bash-completion-script stack)"
 
 ##履歴
 export HISTFILE="$HOME/.zsh_history"
