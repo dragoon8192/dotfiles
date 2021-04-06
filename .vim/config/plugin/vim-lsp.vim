@@ -1,6 +1,6 @@
 if executable('haskell-language-server-wrapper')
     au User lsp_setup call lsp#register_server({
-        \ 'name': 'haskell-language-server-wrapper',
+        \ 'name': 'haskell-ls',
         \ 'cmd': {server_info->['haskell-language-server-wrapper', '--lsp']},
         \ 'root_uri':{server_info->lsp#utils#path_to_uri(
         \     lsp#utils#find_nearest_parent_file_directory(

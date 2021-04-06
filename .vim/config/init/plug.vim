@@ -15,6 +15,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'prabirshrestha/asyncomplete.vim'
     Plug 'prabirshrestha/asyncomplete-lsp.vim'
     "Plug 'syusui-s/scrapbox-vim', { 'for': 'scrapbox' }
+    Plug 'kana/vim-filetype-haskell'
     Plug 'Yggdroot/indentLine'
 call plug#end()
 filetype plugin on
