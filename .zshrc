@@ -14,6 +14,8 @@ bindkey -a "n" vi-forward-char
 bindkey -a "k" vi-delete
 bindkey -a "s" vi-repeat-search
 
+##ALIAS
+alias ghc='stack ghc'
 ##PROMPT
 #vim modeによる
 function zle-line-init zle-keymap-select {
