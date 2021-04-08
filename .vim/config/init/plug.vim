@@ -9,6 +9,7 @@ endif
 "https://github.com/hogehoge/plugin を入れたければ Plug 'hogehoge/plugin'
 call plug#begin('~/.vim/plugged')
     Plug 'vim-jp/vimdoc-ja'
+    Plug 'romainl/flattened'
     Plug 'lifepillar/vim-solarized8'
     Plug 'prabirshrestha/vim-lsp'
 "   Plug 'mattn/vim-lsp-settings'
