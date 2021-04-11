@@ -116,7 +116,7 @@ zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd () { vcs_info }
 RPROMPT=$(z_prompt\
     ${(kv)aa_cd}
-)$vcs_info_msg_0_
+)'$vcs_info_msg_0_'
 
 
 ##補完
