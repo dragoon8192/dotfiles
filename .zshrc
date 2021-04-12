@@ -116,16 +116,12 @@ zle -N zle-keymap-select
 autoload -Uz vcs_info
 setopt PROMPT_SUBST
 zstyle ':vcs_info:git:*' check-for-changes true
-#zstyle ':vcs_info:git:*' unstagedstr '%F{red}[+]'   # %u
 zstyle ':vcs_info:git:*' unstagedstr "${(kv)aa_git_ustg} "   # %u
-#zstyle ':vcs_info:git:*' stagedstr '%F{yellow}[!]'  # %c
 zstyle ':vcs_info:git:*' stagedstr "${(kv)aa_git_stg} "  # %c
-#zstyle ':vcs_info:*' formats '%F{cyan}%c%u[%b:%r]%f'
 zstyle ':vcs_info:*' formats "%u%c${(kv)aa_git_b}"
 zstyle ':vcs_info:*' actionformats "%u%c${(kv)aa_git_b} ${(kv)aa_git_act}"
 precmd () { vcs_info }
 RPROMPT='$(z_prompt ${(kv)aa_cd} $(echo $vcs_info_msg_0_) -$)'
-
 
 ##補完
 autoload -Uz compinit && compinit
