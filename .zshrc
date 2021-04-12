@@ -1,5 +1,6 @@
-source ~/.zsh/*.zsh
-
+for f in ~/.zsh/*.zsh ; do
+    source $f
+done
 ##OSによる分岐
 case ${OSTYPE} in
     darwin*)
