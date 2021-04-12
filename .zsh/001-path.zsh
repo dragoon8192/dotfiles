@@ -17,3 +17,5 @@ if [ -f $manpaths_file ] ;then
         fi
     done
 fi
+# 重複を削除
+typeset -U PATH MANPATH
