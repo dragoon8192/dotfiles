@@ -50,7 +50,8 @@ function z_prompt {
         '-^')  # begin fc
             typeset -A ass
             set -A ass ${@:2:$size_aa}
-            z_prompt -K $ass[kc] ${@:2}
+            echo -n "%K{$ass[kc]}"
+            z_prompt ${@:2}
             ;;
         '-K')
             echo -n "%K{$2}"
@@ -61,11 +62,11 @@ function z_prompt {
             z_prompt ${@:3}
             ;;
         '-R')  # end
-            echo "%S$c_tri_r%s%k"
+            echo "%k$c_tri_r%f"
             return 0
             ;;
         '-L')  # end
-            echo "$c_tri_l%k"
+            echo "%k%S$c_tri_l%s%f"
             return 0
             ;;
         *)  # Associative array
@@ -74,13 +75,13 @@ function z_prompt {
             case $ass[dir] in
                 r)
                     echo -n "%F{$ass[kc]}%S$c_tri_r%s"
-                    echo -n "%F{$ass[fc]}%K{$ass[kc]}$ass[str]%f"
                     ;;
                 l)
                     echo -n "%F{$ass[kc]}$c_tri_l"
-                    echo -n "%F{$ass[fc]}%K{$ass[kc]}$ass[str]%f"
                     ;;
             esac
+            echo -n "%F{$ass[fc]}%K{$ass[kc]}$ass[str]%f%k"
+            echo -n "%F{$ass[kc]}%K{$ass[kc]}"
             shift $size_aa
             z_prompt $@
     esac
@@ -115,7 +116,7 @@ zstyle ':vcs_info:*' formats '%F{cyan}%c%u[%b:%r]%f'
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd () { vcs_info }
 RPROMPT=$(z_prompt\
-    ${(kv)aa_cd}
+    ${(kv)aa_cd} -R
 )'$vcs_info_msg_0_'
 
 
