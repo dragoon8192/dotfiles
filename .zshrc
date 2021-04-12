@@ -43,6 +43,9 @@ if [[ $UID == 0 ]];then
 else
     typeset -A aa_root=()
 fi
+typeset -A aa_git_b=([fc]=15 [kc]=4 [str]="$c_git%b" [dir]='r')
+typeset -A aa_git_stg=([fc]=15 [kc]=3 [str]="!" [dir]='r')
+typeset -A aa_git_ustg=([fc]=15 [kc]=9 [str]="+" [dir]='r')
 
 function z_prompt {
     [[ $# == 0 ]] && return
@@ -67,6 +70,10 @@ function z_prompt {
             ;;
         '-L')  # end
             echo "%k%S$c_tri_l%s%f"
+            return 0
+            ;;
+        '-$')  # end
+            echo "%k%f"
             return 0
             ;;
         *)  # Associative array
@@ -110,14 +117,15 @@ zle -N zle-keymap-select
 autoload -Uz vcs_info
 setopt PROMPT_SUBST
 zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' unstagedstr '%F{red}[+]'   # %u
-zstyle ':vcs_info:git:*' stagedstr '%F{yellow}[!]'  # %c
-zstyle ':vcs_info:*' formats '%F{cyan}%c%u[%b:%r]%f'
+#zstyle ':vcs_info:git:*' unstagedstr '%F{red}[+]'   # %u
+zstyle ':vcs_info:git:*' unstagedstr "${(kv)aa_git_ustg} "   # %u
+#zstyle ':vcs_info:git:*' stagedstr '%F{yellow}[!]'  # %c
+zstyle ':vcs_info:git:*' stagedstr "${(kv)aa_git_stg} "  # %c
+#zstyle ':vcs_info:*' formats '%F{cyan}%c%u[%b:%r]%f'
+zstyle ':vcs_info:*' formats "%u%c${(kv)aa_git_b}"
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd () { vcs_info }
-RPROMPT=$(z_prompt\
-    ${(kv)aa_cd} -R
-)'$vcs_info_msg_0_'
+RPROMPT='$(z_prompt ${(kv)aa_cd} $(echo $vcs_info_msg_0_) -$)'
 
 
 ##補完
