@@ -3,3 +3,6 @@
     nnoremap ZQ <Nop>
 "jjでESC
     inoremap <silent> jj <ESC>
+    nnoremap ; :
+    nnoremap q; q:
+    nnoremap : ;
