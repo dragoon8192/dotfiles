@@ -15,6 +15,8 @@ set helplang=ja,en
     set smartindent
 "クリップボード
     set clipboard=unnamed,autoselect
+"backspace
+    set backspace=indent,eol
 
 "表示
 "構文ハイライト

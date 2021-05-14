@@ -1,6 +1,6 @@
 if executable('haskell-language-server-wrapper')
     au User lsp_setup call lsp#register_server({
-        \ 'name': 'haskell-ls',
+        \ 'name': 'Haskell-LS',
         \ 'cmd': {server_info->['haskell-language-server-wrapper', '--lsp']},
         \ 'root_uri':{server_info->lsp#utils#path_to_uri(
         \     lsp#utils#find_nearest_parent_file_directory(
@@ -38,6 +38,8 @@ function! s:on_lsp_buffer_enabled() abort
     nmap <buffer> <leader>rn <plug>(lsp-rename)
     nmap <buffer> [g <plug>(lsp-previous-diagnostic)
     nmap <buffer> ]g <plug>(lsp-next-diagnostic)
+    nmap <buffer> ga <plug>(lsp-code-action)
+    "nmap <buffer> gD <plug>(lsp-document-diagnostic)
     nmap <buffer> gK <plug>(lsp-hover)
     nmap <buffer> gk <plug>(lsp-hover)
     inoremap <buffer> <expr><c-f> lsp#scroll(+4)
@@ -45,12 +47,13 @@ function! s:on_lsp_buffer_enabled() abort
 
     let g:lsp_format_sync_timeout = 1000
     autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
-    
     " refer to doc to add more commands
 endfunction
 
 augroup lsp_install
     au!
+    let g:lsp_diagnostics_echo_cursor = 1
+    let g:lsp_diagnostics_float_cursor = 1
     " call s:on_lsp_buffer_enabled only for languages that has the server registered.
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
