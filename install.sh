@@ -1,13 +1,13 @@
 #!/usr/bin/env zsh 
 
 IGNORE_PATTERN="^\.(git|travis)"
-DIR_ONLY_CONTENTS=".vim"
+DIR_ONLY_CONTENTS=(".vim" ".stack")
 
 echo "Create dotfile links..."
 
 for dotfile in .??*; do
     [[ $dotfile =~ $IGNORE_PATTERN ]] && continue
-    if [[ $dotfile = $DIR_ONLY_CONTENTS ]] && continue
+    [[ -n ${DIR_ONLY_CONTENTS[(re)$dotfile]} ]] && continue
     if [[ -e "$HOME/$dotfile" && ! -L "$HOME/$dotfile" ]] ;then
         echo "Back up $HOME/$dotfile to $HOME/$dotfile~"
         mv "$HOME/$dotfile" "$HOME/$dotfile~"
