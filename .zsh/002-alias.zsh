@@ -1,2 +1,2 @@
 ##ALIAS
-alias ghc='stack ghc'
+#alias ghc='stack ghc'

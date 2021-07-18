@@ -4,3 +4,7 @@ source ~/etc/mintty-colors-solarized/sol.light
 export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0.0
 #xauth
 xauth generate $DISPLAY
+#homebrew
+export HOMEBREW_PREFIX=$(brew --prefix)
+export HOMEBREW_CELLAR=$(brew --prefix)"/Cellar";
+export HOMEBREW_REPOSITORY=$(brew --prefix)"/Homebrew";

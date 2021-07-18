@@ -8,7 +8,7 @@
 # See https://docs.haskellstack.org/en/stable/yaml_configuration/#templates
 default-template: new-template
 system-ghc: true
-allow-newer: true
+#allow-newer: true
 templates:
   scm-init: git
   ghc-options:

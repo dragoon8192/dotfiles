@@ -4,36 +4,39 @@ paths_file="$HOME/.zsh_paths"
 if [ -f $paths_file ] ;then
     for l_path in $(tac "$paths_file") ;do
         if [ -d "$l_path" ] ; then
-            PATH="$l_path:$PATH"
+            export PATH="$l_path:$PATH"
         fi
     done
 fi
 ##MANPATH
 manpaths_file="$HOME/.zsh_manpaths"
 if [ -f $manpaths_file ] ;then
-    for l_manpath in $(tac "$manpaths_file") ;do
-        if [ -d "$l_manpath" ] ; then
-            MANPATH="$l_manpath:$MANPATH"
+    while read line ;do
+        line=$(eval echo $line)
+        if [ -d "$line" ] ; then
+            export MANPATH="$line:$MANPATH"
         fi
-    done
+    done < <(tac "$manpaths_file")
 fi
 ##INFOPATH
 infopaths_file="$HOME/.zsh_infopaths"
 if [ -f $infopaths_file ] ;then
-    for l_infopath in $(tac "$infopaths_file") ;do
-        if [ -d "$l_infopath" ] ; then
-            INFOPATH="$l_infopath:$INFOPATH"
+    while read line ;do
+        line=$(eval echo $line)
+        if [ -d "$line" ] ; then
+            export INFOPATH="$line:$INFOPATH"
         fi
-    done
+    done < <(tac "$infopaths_file")
 fi
 ##LD_LIBRARY_PATH
 ld_library_paths_file="$HOME/.zsh_ld_library_paths"
 if [ -f $ld_library_paths_file ] ;then
-    for l_ld_library_path in $(tac "$ld_library_paths_file") ;do
-        if [ -d "$l_ld_library_path" ] ; then
-            LD_LIBRARY_PATH="$l_ld_library_path:$LD_LIBRARY_PATH"
+    while read line ;do
+        line=$(eval echo $line)
+        if [ -d "$line" ] ; then
+            export LD_LIBRARY_PATH="$line:$LD_LIBRARY_PATH"
         fi
-    done
+    done < <(tac "$ld_library_paths_file")
 fi
 # 重複を削除
 typeset -U PATH MANPATH INFOPATH LD_LIBRARY_PATH
