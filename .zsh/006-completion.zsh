@@ -6,3 +6,6 @@ setopt CORRECT
 if [[ -x "stack" ]];then
     eval "$(stack --bash-completion-script stack)"
 fi
+if [[ -f ~/etc/wp-completion.bash ]];then
+    source ~/etc/wp-completion.bash
+fi
