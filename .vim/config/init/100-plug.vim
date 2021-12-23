@@ -20,5 +20,6 @@ call plug#begin('~/.vim/plugged')
 "   Plug 'syusui-s/scrapbox-vim', { 'for': 'scrapbox' }
     Plug 'kana/vim-filetype-haskell'
     Plug 'Yggdroot/indentLine'
+    Plug 'itchyny/lightline.vim'
 call plug#end()
 filetype plugin on
