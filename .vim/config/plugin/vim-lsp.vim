@@ -39,19 +39,19 @@ function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
     setlocal signcolumn=yes
     if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-    nmap <buffer> gd <plug>(lsp-definition)
-    nmap <buffer> gs <plug>(lsp-document-symbol-search)
-    nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
-    nmap <buffer> gr <plug>(lsp-references)
-    nmap <buffer> gi <plug>(lsp-implementation)
-    nmap <buffer> gt <plug>(lsp-type-definition)
-    nmap <buffer> <leader>rn <plug>(lsp-rename)
-    nmap <buffer> [g <plug>(lsp-previous-diagnostic)
-    nmap <buffer> ]g <plug>(lsp-next-diagnostic)
-    nmap <buffer> ga <plug>(lsp-code-action)
+    map gl [vim-lsp]
+    nmap <buffer> [vim-lsp]d <plug>(lsp-definition)
+    nmap <buffer> [vim-lsp]s <plug>(lsp-document-symbol-search)
+    nmap <buffer> [vim-lsp]S <plug>(lsp-workspace-symbol-search)
+    nmap <buffer> [vim-lsp]r <plug>(lsp-references)
+    nmap <buffer> [vim-lsp]i <plug>(lsp-implementation)
+    nmap <buffer> [vim-lsp]t <plug>(lsp-type-definition)
+    nmap <buffer> [vim-lsp]n <plug>(lsp-rename)
+    nmap <buffer> [vim-lsp][ <plug>(lsp-previous-diagnostic)
+    nmap <buffer> [vim-lsp]] <plug>(lsp-next-diagnostic)
+    nmap <buffer> [vim-lsp]a <plug>(lsp-code-action)
     " nmap <buffer> gD <plug>(lsp-document-diagnostic)
-    nmap <buffer> gK <plug>(lsp-hover)
-    nmap <buffer> gk <plug>(lsp-hover)
+    nmap <buffer> [vim-lsp]h <plug>(lsp-hover)
     inoremap <buffer> <expr><c-f> lsp#scroll(+4)
     inoremap <buffer> <expr><c-d> lsp#scroll(-4)
 
