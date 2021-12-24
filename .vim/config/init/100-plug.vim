@@ -17,9 +17,10 @@ call plug#begin('~/.vim/plugged')
     Plug 'prabirshrestha/asyncomplete-lsp.vim'
     Plug 'hrsh7th/vim-vsnip'
     Plug 'hrsh7th/vim-vsnip-integ'
-"   Plug 'syusui-s/scrapbox-vim', { 'for': 'scrapbox' }
     Plug 'kana/vim-filetype-haskell'
     Plug 'Yggdroot/indentLine'
+    Plug 'junegunn/vim-easy-align'
+    Plug 'machakann/vim-highlightedyank'
     Plug 'itchyny/lightline.vim'
 call plug#end()
 filetype plugin on
