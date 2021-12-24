@@ -21,6 +21,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'Yggdroot/indentLine'
     Plug 'junegunn/vim-easy-align'
     Plug 'machakann/vim-highlightedyank'
+    Plug 'tpope/vim-fugitive'
     Plug 'itchyny/lightline.vim'
 call plug#end()
 filetype plugin on
