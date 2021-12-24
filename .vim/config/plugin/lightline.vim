@@ -7,22 +7,60 @@ let g:lightline = {
     \                 [ 'readonly', 'gitbranch', 'filename', 'modified' ] ],
     \       'right':[ [ 'lineinfo' ],
     \                 [ 'percent' ],
-    \                 [ 'fileformat', 'fileencoding', 'filetype' ] ] },
+    \                 [ 'fileformat', 'fileencoding', 'filetype' ] ]
+    \   },
     \   'inactive': {
     \       'left': [ [ 'filename' ] ],
     \       'right':[ [ 'lineinfo' ],
-    \                 [ 'percent' ] ] },
+    \                 [ 'percent' ] ]
+    \   },
     \   'tabline': {
     \       'left': [ [ 'tabs' ] ],
-    \       'right':[ [ 'close' ] ] },
+    \       'right':[ [ 'close' ] ]
+    \   },
+    \   'component': {
+    \       'mode': '%{lightline#mode()}',
+    \       'absolutepath': '%F',
+    \       'relativepath': '%f',
+    \       'modified': '%M',
+    \       'bufnum': '%n',
+    \       'paste': '%{&paste?"PASTE":""}',
+    \       'readonly': '%R',
+    \       'charvalue': '%b',
+    \       'charvaluehex': '%B',
+    \       'fileencoding': '%{&fenc!=#""?&fenc:&enc}',
+    \       'fileformat': '%{&ff}',
+    \       'filetype': '%{&ft!=#""?&ft:"no ft"}',
+    \       'percent': '%3p%%',
+    \       'percentwin': '%P',
+    \       'spell': '%{&spell?&spelllang:""}',
+    \       'lineinfo': '%3l:%-2c',
+    \       'line': '%l',
+    \       'column': '%c',
+    \       'close': '%999X X ',
+    \       'winnr': '%{winnr()}' },
     \   'component_function': {
-    \       'gitbranch': 'LightlineFugitive'},
+    \       'gitbranch': 'LightlineGitbranch',
+    \       'filename': 'LightlineFilename',
+    \   },
     \ }
 
-function! LightlineFugitive()
+let s:chars = {
+    \   'tri_r' : '',
+    \   'tri_l' : '',
+    \   'git'   : '',
+    \   'cd'  : '❖ ',
+    \}
+
+
+function! LightlineGitbranch()
     if &filetype !~? 'vimfiler\|gundo' && exists('*fugitive#head')
-        return fugitive#head()
+        return s:chars.git . fugitive#head()
     else
         return ''
     endif
+endfunction
+
+function! LightlineFilename()
+    return s:chars.cd . expand('%:t')
 endfunction
