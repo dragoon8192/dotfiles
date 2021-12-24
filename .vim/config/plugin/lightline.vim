@@ -43,24 +43,28 @@ let g:lightline = {
     \       'gitbranch': 'LightlineGitbranch',
     \       'filename': 'LightlineFilename',
     \   },
+    \   'separator': {
+    \       'left': '%{g:powerChars.tri_r}',
+    \       'right':'',
+    \   },
     \ }
 
-let s:chars = {
+let g:powerChars = {
     \   'tri_r' : '',
     \   'tri_l' : '',
     \   'git'   : '',
-    \   'cd'  : '❖ ',
+    \   'cd'    : '❖ ',
     \}
 
 
 function! LightlineGitbranch()
     if &filetype !~? 'vimfiler\|gundo' && exists('*fugitive#head')
-        return s:chars.git . fugitive#head()
+        return g:powerChars.git . fugitive#head()
     else
         return ''
     endif
 endfunction
 
 function! LightlineFilename()
-    return s:chars.cd . expand('%:t')
+    return g:powerChars.cd . expand('%:t')
 endfunction
