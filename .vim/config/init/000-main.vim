@@ -30,5 +30,3 @@ set helplang=ja,en
     set title
 "行数表示
     set number
-"全角文字の幅
-    set ambiwidth=double

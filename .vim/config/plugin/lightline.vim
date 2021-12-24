@@ -5,7 +5,7 @@ let g:lightline = {
     \   'active': {
     \       'left': [ [ 'mode', 'paste' ],
     \                 [ 'readonly', 'gitbranch', 'filename', 'modified' ] ],
-    \       'right':[ [ 'lineinfo' ],
+    \       'right':[ [ 'lineinfo', 'charvaluehex' ],
     \                 [ 'percent' ],
     \                 [ 'fileformat', 'fileencoding', 'filetype' ] ]
     \   },
@@ -44,27 +44,26 @@ let g:lightline = {
     \       'filename': 'LightlineFilename',
     \   },
     \   'separator': {
-    \       'left': '%{g:powerChars.tri_r}',
-    \       'right':'',
+    \       'left': g:powerlineChars.tri_r,
+    \       'right':g:powerlineChars.tri_l,
+    \   },
+    \   'subseparator': {
+    \       'left': g:powerlineChars.tri_line_r,
+    \       'right':g:powerlineChars.tri_line_l,
     \   },
     \ }
 
-let g:powerChars = {
-    \   'tri_r' : '',
-    \   'tri_l' : '',
-    \   'git'   : '',
-    \   'cd'    : '❖ ',
-    \}
-
+"let g:lightline.subseparator.left = g:powerlineChars.tri_line_r
+"let g:lightline.subseparator.right = g:powerlineChars.tri_line_l
 
 function! LightlineGitbranch()
-    if &filetype !~? 'vimfiler\|gundo' && exists('*fugitive#head')
-        return g:powerChars.git . fugitive#head()
+    if &filetype !~? 'vimfiler\|gundo' && exists('*fugitive#head') && fugitive#head() != ''
+        return g:powerlineChars.git . fugitive#head()
     else
         return ''
     endif
 endfunction
 
 function! LightlineFilename()
-    return g:powerChars.cd . expand('%:t')
+    return g:powerlineChars.cd . expand('%:t')
 endfunction
