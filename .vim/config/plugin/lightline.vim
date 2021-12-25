@@ -5,7 +5,7 @@ let g:lightline = {
     \   'active': {
     \       'left': [ [ 'mode', 'paste' ],
     \                 [ 'readonly', 'gitbranch', 'filename', 'modified' ] ],
-    \       'right':[ [ 'lineinfo', 'charvaluehex' ],
+    \       'right':[ [ 'charvaluehex', 'lineinfo' ],
     \                 [ 'percent' ],
     \                 [ 'fileformat', 'fileencoding', 'filetype' ] ]
     \   },
@@ -27,7 +27,7 @@ let g:lightline = {
     \       'paste': '%{&paste?"PASTE":""}',
     \       'readonly': '%R',
     \       'charvalue': '%b',
-    \       'charvaluehex': '%B',
+    \       'charvaluehex': '%04B',
     \       'fileencoding': '%{&fenc!=#""?&fenc:&enc}',
     \       'fileformat': '%{&ff}',
     \       'filetype': '%{&ft!=#""?&ft:"no ft"}',
