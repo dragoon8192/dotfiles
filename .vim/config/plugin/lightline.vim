@@ -5,7 +5,7 @@ let g:lightline = {
     \   'active': {
     \       'left': [ [ 'mode', 'paste' ],
     \                 [ 'readonly', 'gitbranch', 'filename', 'modified' ] ],
-    \       'right':[ [ 'charvaluehex', 'lineinfo' ],
+    \       'right':[ [ 'lineinfo' ],
     \                 [ 'percent' ],
     \                 [ 'fileformat', 'fileencoding', 'filetype' ] ]
     \   },

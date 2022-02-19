@@ -23,6 +23,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/vim-easy-align'
     Plug 'machakann/vim-highlightedyank'
     Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-surround'
     Plug 'itchyny/lightline.vim'
 call plug#end()
 filetype plugin on
