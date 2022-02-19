@@ -18,10 +18,12 @@ call plug#begin('~/.vim/plugged')
     Plug 'hrsh7th/vim-vsnip'
     Plug 'hrsh7th/vim-vsnip-integ'
     Plug 'kana/vim-filetype-haskell'
+    Plug 'Twinside/vim-haskellFold'
     Plug 'Yggdroot/indentLine'
     Plug 'junegunn/vim-easy-align'
     Plug 'machakann/vim-highlightedyank'
     Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-surround'
     Plug 'itchyny/lightline.vim'
 call plug#end()
 filetype plugin on
