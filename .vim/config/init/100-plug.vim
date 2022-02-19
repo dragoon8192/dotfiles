@@ -24,6 +24,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'machakann/vim-highlightedyank'
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-surround'
+    Plug 'tpope/vim-repeat'
     Plug 'itchyny/lightline.vim'
 call plug#end()
 filetype plugin on
