@@ -26,5 +26,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-repeat'
     Plug 'itchyny/lightline.vim'
+    Plug 'mattn/vim-maketable'
 call plug#end()
 filetype plugin on
