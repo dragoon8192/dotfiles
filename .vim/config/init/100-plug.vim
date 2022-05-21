@@ -19,7 +19,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'hrsh7th/vim-vsnip-integ'
     Plug 'kana/vim-filetype-haskell'
     Plug 'Twinside/vim-haskellFold'
-    Plug 'Yggdroot/indentLine'
+"    Plug 'Yggdroot/indentLine'
     Plug 'junegunn/vim-easy-align'
     Plug 'machakann/vim-highlightedyank'
     Plug 'tpope/vim-fugitive'
