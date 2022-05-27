@@ -57,8 +57,8 @@ let g:lightline = {
 "let g:lightline.subseparator.right = g:powerlineChars.tri_line_l
 
 function! LightlineGitbranch()
-    if &filetype !~? 'vimfiler\|gundo' && exists('*fugitive#head') && fugitive#head() != ''
-        return g:powerlineChars.git . fugitive#head()
+    if &filetype !~? 'vimfiler\|gundo' && exists('*FugitiveHead') && FugitiveHead() != ''
+        return g:powerlineChars.git . FugitiveHead()
     else
         return ''
     endif
