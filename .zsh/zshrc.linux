@@ -11,9 +11,9 @@ export HOMEBREW_CELLAR=$(brew --prefix)"/Cellar";
 export HOMEBREW_REPOSITORY=$(brew --prefix)"/Homebrew";
 
 #ssh接続用のポートフォワーディング
-IP=$(ip addr show eth0 | grep 'inet ' | awk '{print $2}')
+IP=$(ip addr show eth0 | grep 'inet ' | grep -E '[0-9]{,3}\.[0-9]{,3}\.[0-9]{,3}\.[0-9]{,3}' -o | awk '{print $2}')
 netsh.exe interface portproxy delete v4tov4 listenport=22
 netsh.exe interface portproxy add    v4tov4 listenport=22 connectaddress=$IP
 # sc.exe config iphlpsvc start=auto
-# sc.exe start  iphlpsvc
+sc.exe start  iphlpsvc
 sudo service ssh start
