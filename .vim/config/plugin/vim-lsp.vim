@@ -27,16 +27,16 @@ if executable('vim-language-server')
 endif
 
 if executable('typescript-language-server')
-    augroup LspTypeScript
+    augroup LspJavaScript
         autocmd!
         autocmd User lsp_setup call lsp#register_server({
-                    \ 'name': 'TypeScript-LS',
+                    \ 'name': 'TypeScript-LS for JS',
                     \ 'cmd': { server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
                     \ 'whitelist': ['javascript', 'javascript.jsx', 'javascriptreact'],
                     \ 'root_uri': { server_info->lsp#utils#path_to_uri(
                     \     lsp#utils#find_nearest_parent_directory(
                     \         lsp#utils#get_buffer_path(),
-                    \         ['.git/..'],
+                    \         ['package.json'],
                     \     ))},
                     \ })
     augroup END
@@ -47,12 +47,12 @@ if executable('purescript-language-server')
         autocmd!
         autocmd User lsp_setup call lsp#register_server({
                     \ 'name': 'PureScript-LS',
-                    \ 'cmd': { server_info->[&shell, &shellcmdflag, 'purescript-language-server --stdio']},
+                    \ 'cmd': { server_info->['purescript-language-server', '--stdio']},
                     \ 'whitelist': ['purescript'],
                     \ 'root_uri': { server_info->lsp#utils#path_to_uri(
                     \     lsp#utils#find_nearest_parent_directory(
                     \         lsp#utils#get_buffer_path(),
-                    \         ['bower.json', 'psc-package.json', 'spago.dhall'],
+                    \         ['bower.json', 'psc-package.json', 'spago.dhall', '.git'],
                     \     ))},
                     \ })
     augroup END
