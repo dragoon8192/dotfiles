@@ -18,6 +18,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'hrsh7th/vim-vsnip'
     Plug 'hrsh7th/vim-vsnip-integ'
     Plug 'kana/vim-filetype-haskell'
+    Plug 'purescript-contrib/purescript-vim'
     Plug 'Twinside/vim-haskellFold'
 "    Plug 'Yggdroot/indentLine'
     Plug 'junegunn/vim-easy-align'
