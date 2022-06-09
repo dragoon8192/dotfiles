@@ -1,5 +1,5 @@
 if executable('haskell-language-server-wrapper')
-    au User lsp_setup call lsp#register_server({
+    autocmd User lsp_setup call lsp#register_server({
         \ 'name': 'Haskell-LS',
         \ 'cmd': {server_info->['haskell-language-server-wrapper', '--lsp']},
         \ 'root_uri':{server_info->lsp#utils#path_to_uri(
@@ -15,7 +15,7 @@ if executable('vim-language-server')
   augroup LspVim
     autocmd!
     autocmd User lsp_setup call lsp#register_server({
-        \ 'name': 'vim-ls',
+        \ 'name': 'Vim-LS',
         \ 'cmd': {server_info->['vim-language-server', '--stdio']},
         \ 'whitelist': ['vim'],
         \ 'initialization_options': {
@@ -26,12 +26,21 @@ if executable('vim-language-server')
 endif
 
 if executable('typescript-language-server')
-    au User lsp_setup call lsp#register_server({
-                \ 'name': 'javascript support using typescript-language-server',
+    autocmd User lsp_setup call lsp#register_server({
+                \ 'name': 'TypeScript-LS',
                 \ 'cmd': { server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
                 \ 'root_uri': { server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_directory(lsp#utils#get_buffer_path(), '.git/..'))},
                 \ 'whitelist': ['javascript', 'javascript.jsx', 'javascriptreact']
-      \ })
+                \ })
+endif
+
+if executable('purescript-language-server')
+    autocmd User lsp_setup call lsp#register_server({
+                \ 'name': 'PureScript-LS',
+                \ 'cmd': { server_info->[&shell, &shellcmdflag, 'purescript-language-server --stdio']},
+                \ 'root_uri': { server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_directory(lsp#utils#get_buffer_path(), '.git/..'))},
+                \ 'whitelist': ['purescript']
+                \ })
 endif
 
 if executable('pyls')
