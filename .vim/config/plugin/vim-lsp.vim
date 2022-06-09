@@ -1,54 +1,72 @@
 if executable('haskell-language-server-wrapper')
-    autocmd User lsp_setup call lsp#register_server({
-        \ 'name': 'Haskell-LS',
-        \ 'cmd': {server_info->['haskell-language-server-wrapper', '--lsp']},
-        \ 'root_uri':{server_info->lsp#utils#path_to_uri(
-        \     lsp#utils#find_nearest_parent_file_directory(
-        \         lsp#utils#get_buffer_path(),
-        \         ['.cabal', 'stack.yaml', 'cabal.project', 'package.yaml', 'hie.yaml', '.git'],
-        \     ))},
-        \ 'whitelist': ['haskell', 'lhaskell'],
-        \ })
+    augroup LspHaskell
+        autocmd!
+        autocmd User lsp_setup call lsp#register_server({
+                    \ 'name': 'Haskell-LS',
+                    \ 'cmd': {server_info->['haskell-language-server-wrapper', '--lsp']},
+                    \ 'whitelist': ['haskell', 'lhaskell'],
+                    \ 'root_uri':{server_info->lsp#utils#path_to_uri(
+                    \     lsp#utils#find_nearest_parent_file_directory(
+                    \         lsp#utils#get_buffer_path(),
+                    \         ['.cabal', 'stack.yaml', 'cabal.project', 'package.yaml', 'hie.yaml', '.git'],
+                    \     ))},
+                    \ })
+    augroup END
 endif
 
 if executable('vim-language-server')
-  augroup LspVim
-    autocmd!
-    autocmd User lsp_setup call lsp#register_server({
-        \ 'name': 'Vim-LS',
-        \ 'cmd': {server_info->['vim-language-server', '--stdio']},
-        \ 'whitelist': ['vim'],
-        \ 'initialization_options': {
-        \   'vimruntime': $VIMRUNTIME,
-        \   'runtimepath': &rtp,
-        \ }})
-  augroup END
+    augroup LspVim
+        autocmd!
+        autocmd User lsp_setup call lsp#register_server({
+                    \ 'name': 'Vim-LS',
+                    \ 'cmd': {server_info->['vim-language-server', '--stdio']},
+                    \ 'whitelist': ['vim'],
+                    \ 'initialization_options': {'vimruntime': $VIMRUNTIME, 'runtimepath': &rtp},
+                    \ })
+    augroup END
 endif
 
 if executable('typescript-language-server')
-    autocmd User lsp_setup call lsp#register_server({
-                \ 'name': 'TypeScript-LS',
-                \ 'cmd': { server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
-                \ 'root_uri': { server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_directory(lsp#utils#get_buffer_path(), '.git/..'))},
-                \ 'whitelist': ['javascript', 'javascript.jsx', 'javascriptreact']
-                \ })
+    augroup LspTypeScript
+        autocmd!
+        autocmd User lsp_setup call lsp#register_server({
+                    \ 'name': 'TypeScript-LS',
+                    \ 'cmd': { server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+                    \ 'whitelist': ['javascript', 'javascript.jsx', 'javascriptreact'],
+                    \ 'root_uri': { server_info->lsp#utils#path_to_uri(
+                    \     lsp#utils#find_nearest_parent_directory(
+                    \         lsp#utils#get_buffer_path(),
+                    \         ['.git/..'],
+                    \     ))},
+                    \ })
+    augroup END
 endif
 
 if executable('purescript-language-server')
-    autocmd User lsp_setup call lsp#register_server({
-                \ 'name': 'PureScript-LS',
-                \ 'cmd': { server_info->[&shell, &shellcmdflag, 'purescript-language-server --stdio']},
-                \ 'root_uri': { server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_directory(lsp#utils#get_buffer_path(), '.git/..'))},
-                \ 'whitelist': ['purescript']
-                \ })
+    augroup LspPureScript
+        autocmd!
+        autocmd User lsp_setup call lsp#register_server({
+                    \ 'name': 'PureScript-LS',
+                    \ 'cmd': { server_info->[&shell, &shellcmdflag, 'purescript-language-server --stdio']},
+                    \ 'whitelist': ['purescript'],
+                    \ 'root_uri': { server_info->lsp#utils#path_to_uri(
+                    \     lsp#utils#find_nearest_parent_directory(
+                    \         lsp#utils#get_buffer_path(),
+                    \         ['bower.json', 'psc-package.json', 'spago.dhall'],
+                    \     ))},
+                    \ })
+    augroup END
 endif
 
 if executable('pyls')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'pyls',
-        \ 'cmd': {server_info->['pyls']},
-        \ 'whitelist': ['python'],
-        \ })
+    augroup LspPython
+        autocmd!
+        autocmd User lsp_setup call lsp#register_server({
+                    \ 'name': 'pyls',
+                    \ 'cmd': {server_info->['pyls']},
+                    \ 'whitelist': ['python'],
+                    \ })
+    augroup END
 endif
 
 function! s:on_lsp_buffer_enabled() abort
