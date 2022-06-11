@@ -34,7 +34,7 @@ if executable('typescript-language-server')
                     \ 'cmd': { server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
                     \ 'whitelist': ['javascript', 'javascript.jsx', 'javascriptreact'],
                     \ 'root_uri': { server_info->lsp#utils#path_to_uri(
-                    \     lsp#utils#find_nearest_parent_directory(
+                    \     lsp#utils#find_nearest_parent_file_directory(
                     \         lsp#utils#get_buffer_path(),
                     \         ['package.json'],
                     \     ))},
@@ -50,10 +50,16 @@ if executable('purescript-language-server')
                     \ 'cmd': { server_info->['purescript-language-server', '--stdio']},
                     \ 'whitelist': ['purescript'],
                     \ 'root_uri': { server_info->lsp#utils#path_to_uri(
-                    \     lsp#utils#find_nearest_parent_directory(
+                    \     lsp#utils#find_nearest_parent_file_directory(
                     \         lsp#utils#get_buffer_path(),
-                    \         ['bower.json', 'psc-package.json', 'spago.dhall', '.git'],
+                    \         ['bower.json', 'psc-package.json', 'spago.dhall'],
                     \     ))},
+                    \ 'workspace_config': {
+                    \     'purescript': {
+                    \         'addSpagoSources': v:true,
+                    \         'addNpmPath': v:true,
+                    \     }
+                    \ },
                     \ })
     augroup END
 endif
