@@ -4,7 +4,7 @@ if executable('haskell-language-server-wrapper')
         autocmd User lsp_setup call lsp#register_server({
                     \ 'name': 'Haskell-LS',
                     \ 'cmd': {server_info->['haskell-language-server-wrapper', '--lsp']},
-                    \ 'whitelist': ['haskell', 'lhaskell'],
+                    \ 'allowlist': ['haskell', 'lhaskell'],
                     \ 'root_uri':{server_info->lsp#utils#path_to_uri(
                     \     lsp#utils#find_nearest_parent_file_directory(
                     \         lsp#utils#get_buffer_path(),
@@ -20,7 +20,7 @@ if executable('vim-language-server')
         autocmd User lsp_setup call lsp#register_server({
                     \ 'name': 'Vim-LS',
                     \ 'cmd': {server_info->['vim-language-server', '--stdio']},
-                    \ 'whitelist': ['vim'],
+                    \ 'allowlist': ['vim'],
                     \ 'initialization_options': {'vimruntime': $VIMRUNTIME, 'runtimepath': &rtp},
                     \ })
     augroup END
@@ -32,7 +32,7 @@ if executable('typescript-language-server')
         autocmd User lsp_setup call lsp#register_server({
                     \ 'name': 'TypeScript-LS for JS',
                     \ 'cmd': { server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
-                    \ 'whitelist': ['javascript', 'javascript.jsx', 'javascriptreact'],
+                    \ 'allowlist': ['javascript', 'javascript.jsx', 'javascriptreact'],
                     \ 'root_uri': { server_info->lsp#utils#path_to_uri(
                     \     lsp#utils#find_nearest_parent_file_directory(
                     \         lsp#utils#get_buffer_path(),
@@ -48,7 +48,7 @@ if executable('purescript-language-server')
         autocmd User lsp_setup call lsp#register_server({
                     \ 'name': 'PureScript-LS',
                     \ 'cmd': { server_info->['purescript-language-server', '--stdio']},
-                    \ 'whitelist': ['purescript'],
+                    \ 'allowlist': ['purescript'],
                     \ 'root_uri': { server_info->lsp#utils#path_to_uri(
                     \     lsp#utils#find_nearest_parent_file_directory(
                     \         lsp#utils#get_buffer_path(),
@@ -70,7 +70,7 @@ if executable('pyls')
         autocmd User lsp_setup call lsp#register_server({
                     \ 'name': 'pyls',
                     \ 'cmd': {server_info->['pyls']},
-                    \ 'whitelist': ['python'],
+                    \ 'allowlist': ['python'],
                     \ })
     augroup END
 endif
