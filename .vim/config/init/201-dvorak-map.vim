@@ -1,6 +1,11 @@
 "Dvorak用
 inoremap <silent> hh <ESC>
 
+noremap h <Nop>
+noremap j <Nop>
+noremap k <Nop>
+noremap l <Nop>
+
 noremap t <Nop>
 noremap s <Nop>
 
@@ -23,6 +28,16 @@ noremap gK K
 noremap S N
 
 " window
+noremap <C-W>h <Nop>
+noremap <C-W>j <Nop>
+noremap <C-W>k <Nop>
+noremap <C-W>l <Nop>
+
+noremap <C-W><C-H> <Nop>
+noremap <C-W><C-J> <Nop>
+noremap <C-W><C-K> <Nop>
+noremap <C-W><C-L> <Nop>
+
 noremap <C-W>d <C-W>h
 noremap <C-W>h <C-W>j
 noremap <C-W>t <C-W>k
