@@ -1,0 +1,2 @@
+"jjでESC
+    inoremap <silent> jj <ESC>
