@@ -11,6 +11,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'vim-jp/vimdoc-ja'
     Plug 'romainl/flattened'
     Plug 'lifepillar/vim-solarized8'
+    Plug 'thinca/vim-quickrun'
     Plug 'prabirshrestha/vim-lsp'
 "   Plug 'mattn/vim-lsp-settings'
     Plug 'prabirshrestha/asyncomplete.vim'
