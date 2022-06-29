@@ -79,6 +79,8 @@ function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
     setlocal signcolumn=yes
     if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+
+    " mapping
     map gl [vim-lsp]
     nmap <buffer> [vim-lsp]d <plug>(lsp-definition)
     nmap <buffer> [vim-lsp]s <plug>(lsp-document-symbol-search)
@@ -91,6 +93,7 @@ function! s:on_lsp_buffer_enabled() abort
     nmap <buffer> [vim-lsp]] <plug>(lsp-next-diagnostic)
     nmap <buffer> [vim-lsp]a <plug>(lsp-code-action)
     " nmap <buffer> gD <plug>(lsp-document-diagnostic)
+    nmap <buffer> <Leader>h <plug>(lsp-hover)
     nmap <buffer> [vim-lsp]h <plug>(lsp-hover)
     inoremap <buffer> <expr><c-f> lsp#scroll(+4)
     inoremap <buffer> <expr><c-d> lsp#scroll(-4)
