@@ -6,18 +6,18 @@
     #    8: base02   9: orange  10: base01  11: base00
     #   12: base0   13: violet  14: base1   15: base2
 #text
-typeset c_tri_r='' c_tri_l='' c_git='' c_cd='❖ '
+typeset c_tri_r='' c_tri_l='' c_git='g:' c_cd=' '
 # Associative array
 typeset -i size_aa=8
-typeset -A aa_nor=([fc]=15 [kc]=9 [str]='操作' [dir]='r')
-typeset -A aa_ins=([fc]=15 [kc]=6 [str]='入力' [dir]='r')
+typeset -A aa_nor=([fc]=15 [kc]=9 [str]='NOR ' [dir]='r')
+typeset -A aa_ins=([fc]=15 [kc]=6 [str]='INS ' [dir]='r')
 if [[ -n "${REMOTEHOST}${SSH_CONNECTION}" ]];then
-    typeset -A aa_ssh=([fc]=15 [kc]=3 [str]='遠隔' [dir]='r')
+    typeset -A aa_ssh=([fc]=15 [kc]=3 [str]='REM' [dir]='r')
 else
     typeset -A aa_ssh=()
 fi
 if [[ $UID == 0 ]];then
-    typeset -A aa_root=([fc]=15 [kc]=10 [str]='管理者' [dir]='r')
+    typeset -A aa_root=([fc]=15 [kc]=10 [str]='SU' [dir]='r')
 else
     typeset -A aa_root=()
 fi
