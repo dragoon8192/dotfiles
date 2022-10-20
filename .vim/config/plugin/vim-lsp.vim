@@ -55,7 +55,7 @@ if executable('purescript-language-server')
                     \         ['bower.json', 'psc-package.json', 'spago.dhall'],
                     \     ))},
                     \ 'workspace_config': {
-                    \     'purescript': {
+                    \     'purescript-language-server': {
                     \         'addSpagoSources': v:true,
                     \         'addNpmPath': v:true,
                     \     }
@@ -64,13 +64,24 @@ if executable('purescript-language-server')
     augroup END
 endif
 
-if executable('pyls')
+if executable('pylsp')
     augroup LspPython
         autocmd!
         autocmd User lsp_setup call lsp#register_server({
-                    \ 'name': 'pyls',
-                    \ 'cmd': {server_info->['pyls']},
+                    \ 'name': 'pylsp',
+                    \ 'cmd': {server_info->['pylsp']},
                     \ 'allowlist': ['python'],
+                    \ 'workspace_config': {
+                    \     'pylsp': {
+                    \         'plugins': {
+                    \             'pylsp-mypy':{
+                    \                 'enabled': v:true,
+                    \                 'live_mode': v:true,
+                    \                 'strict': v:false,
+                    \             },
+                    \         },
+                    \     },
+                    \ },
                     \ })
     augroup END
 endif
