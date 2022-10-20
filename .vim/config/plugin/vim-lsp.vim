@@ -2,15 +2,20 @@ if executable('haskell-language-server-wrapper')
     augroup LspHaskell
         autocmd!
         autocmd User lsp_setup call lsp#register_server({
-                    \ 'name': 'Haskell-LS',
-                    \ 'cmd': {server_info->['haskell-language-server-wrapper', '--lsp']},
-                    \ 'allowlist': ['haskell', 'lhaskell'],
-                    \ 'root_uri':{server_info->lsp#utils#path_to_uri(
-                    \     lsp#utils#find_nearest_parent_file_directory(
-                    \         lsp#utils#get_buffer_path(),
-                    \         ['.cabal', 'stack.yaml', 'cabal.project', 'package.yaml', 'hie.yaml', '.git'],
-                    \     ))},
-                    \ })
+        \   'name': 'Haskell-LS',
+        \   'cmd': {
+        \       server_info->['haskell-language-server-wrapper', '--lsp']
+        \   },
+        \   'allowlist': ['haskell', 'lhaskell'],
+        \   'root_uri': {
+        \       server_info->lsp#utils#path_to_uri(
+        \           lsp#utils#find_nearest_parent_file_directory(
+        \               lsp#utils#get_buffer_path(),
+        \               ['.cabal', 'stack.yaml', 'cabal.project', 'package.yaml', 'hie.yaml', '.git'],
+        \           )
+        \       )
+        \   },
+        \ })
     augroup END
 endif
 
@@ -18,11 +23,16 @@ if executable('vim-language-server')
     augroup LspVim
         autocmd!
         autocmd User lsp_setup call lsp#register_server({
-                    \ 'name': 'Vim-LS',
-                    \ 'cmd': {server_info->['vim-language-server', '--stdio']},
-                    \ 'allowlist': ['vim'],
-                    \ 'initialization_options': {'vimruntime': $VIMRUNTIME, 'runtimepath': &rtp},
-                    \ })
+        \   'name': 'Vim-LS',
+        \   'cmd': {
+        \       server_info->['vim-language-server', '--stdio']
+        \   },
+        \   'allowlist': ['vim'],
+        \   'initialization_options': {
+        \       'vimruntime': $VIMRUNTIME,
+        \       'runtimepath': &rtp,
+        \   },
+        \ })
     augroup END
 endif
 
@@ -30,15 +40,20 @@ if executable('typescript-language-server')
     augroup LspJavaScript
         autocmd!
         autocmd User lsp_setup call lsp#register_server({
-                    \ 'name': 'TypeScript-LS for JS',
-                    \ 'cmd': { server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
-                    \ 'allowlist': ['javascript', 'javascript.jsx', 'javascriptreact'],
-                    \ 'root_uri': { server_info->lsp#utils#path_to_uri(
-                    \     lsp#utils#find_nearest_parent_file_directory(
-                    \         lsp#utils#get_buffer_path(),
-                    \         ['package.json'],
-                    \     ))},
-                    \ })
+        \   'name': 'TypeScript-LS for JS',
+        \   'cmd': {
+        \       server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']
+        \   },
+        \   'allowlist': ['javascript', 'javascript.jsx', 'javascriptreact'],
+        \   'root_uri': {
+        \       server_info->lsp#utils#path_to_uri(
+        \           lsp#utils#find_nearest_parent_file_directory(
+        \               lsp#utils#get_buffer_path(),
+        \               ['package.json'],
+        \           )
+        \       )
+        \   },
+        \ })
     augroup END
 endif
 
@@ -46,21 +61,26 @@ if executable('purescript-language-server')
     augroup LspPureScript
         autocmd!
         autocmd User lsp_setup call lsp#register_server({
-                    \ 'name': 'PureScript-LS',
-                    \ 'cmd': { server_info->['purescript-language-server', '--stdio']},
-                    \ 'allowlist': ['purescript'],
-                    \ 'root_uri': { server_info->lsp#utils#path_to_uri(
-                    \     lsp#utils#find_nearest_parent_file_directory(
-                    \         lsp#utils#get_buffer_path(),
-                    \         ['bower.json', 'psc-package.json', 'spago.dhall'],
-                    \     ))},
-                    \ 'workspace_config': {
-                    \     'purescript-language-server': {
-                    \         'addSpagoSources': v:true,
-                    \         'addNpmPath': v:true,
-                    \     }
-                    \ },
-                    \ })
+        \   'name': 'PureScript-LS',
+        \   'cmd': {
+        \       server_info->['purescript-language-server', '--stdio']
+        \   },
+        \   'allowlist': ['purescript'],
+        \   'root_uri': {
+        \       server_info->lsp#utils#path_to_uri(
+        \           lsp#utils#find_nearest_parent_file_directory(
+        \               lsp#utils#get_buffer_path(),
+        \               ['bower.json', 'psc-package.json', 'spago.dhall'],
+        \           )
+        \       )
+        \   },
+        \   'workspace_config': {
+        \       'purescript-language-server': {
+        \           'addSpagoSources': v:true,
+        \           'addNpmPath': v:true,
+        \       }
+        \   },
+        \ })
     augroup END
 endif
 
@@ -68,21 +88,23 @@ if executable('pylsp')
     augroup LspPython
         autocmd!
         autocmd User lsp_setup call lsp#register_server({
-                    \ 'name': 'pylsp',
-                    \ 'cmd': {server_info->['pylsp']},
-                    \ 'allowlist': ['python'],
-                    \ 'workspace_config': {
-                    \     'pylsp': {
-                    \         'plugins': {
-                    \             'pylsp-mypy':{
-                    \                 'enabled': v:true,
-                    \                 'live_mode': v:true,
-                    \                 'strict': v:false,
-                    \             },
-                    \         },
-                    \     },
-                    \ },
-                    \ })
+        \   'name': 'pylsp',
+        \   'cmd': {
+        \       server_info->['pylsp']
+        \   },
+        \   'allowlist': ['python'],
+        \   'workspace_config': {
+        \       'pylsp': {
+        \           'plugins': {
+        \               'pylsp-mypy':{
+        \                   'enabled': v:true,
+        \                   'live_mode': v:true,
+        \                   'strict': v:false,
+        \               },
+        \           },
+        \       },
+        \   },
+        \ })
     augroup END
 endif
 
