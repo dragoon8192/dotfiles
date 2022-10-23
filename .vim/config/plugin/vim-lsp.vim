@@ -75,9 +75,10 @@ if executable('purescript-language-server')
         \       )
         \   },
         \   'workspace_config': {
-        \       'purescript-language-server': {
+        \       'purescript': {
         \           'addSpagoSources': v:true,
         \           'addNpmPath': v:true,
+        \           'formatter': 'pures-tidy',
         \       }
         \   },
         \ })
