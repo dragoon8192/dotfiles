@@ -8,6 +8,7 @@ endif
 "保存する場所をシングルクォート
 "https://github.com/hogehoge/plugin を入れたければ Plug 'hogehoge/plugin'
 call plug#begin('~/.vim/plugged')
+    Plug 'Shougo/vimproc.vim', {'do' : 'make'}
     Plug 'Twinside/vim-haskellFold'
     Plug 'hrsh7th/vim-vsnip'
     Plug 'hrsh7th/vim-vsnip-integ'
