@@ -11,6 +11,5 @@ let g:quickrun_config = {
             \   },
             \   'rust': {
             \       'exec'                              : 'cargo run %o %a',
-            \       'cmdopt'                            : '--message-format json-diagnostic-rendered-ansi',
             \   }
             \}
