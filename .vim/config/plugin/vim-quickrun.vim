@@ -10,6 +10,7 @@ let g:quickrun_config = {
             \       'hook/time/enable'                  : 1,
             \   },
             \   'rust': {
-            \       'exec'                              : 'cargo run',
+            \       'exec'                              : 'cargo run %o %a',
+            \       'cmdopt'                            : '--message-format json-diagnostic-rendered-ansi',
             \   }
             \}
