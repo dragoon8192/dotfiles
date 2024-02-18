@@ -23,6 +23,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'prabirshrestha/vim-lsp'
     Plug 'purescript-contrib/purescript-vim'
     Plug 'romainl/flattened'
+    Plug 'rust-lang/rust.vim'
     Plug 'thinca/vim-quickrun'
     Plug 'tpope/vim-commentary'
     Plug 'tpope/vim-fugitive'
