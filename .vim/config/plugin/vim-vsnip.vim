@@ -5,8 +5,8 @@ imap <expr> <C-h>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-h
 smap <expr> <C-h>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-h>'
 
 " Expand or jump
-imap <expr> <C-n>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-n>'
-smap <expr> <C-n>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-n>'
+" imap <expr> <C-n>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-n>'
+" smap <expr> <C-n>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-n>'
 
 " Jump forward or backward
 imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
