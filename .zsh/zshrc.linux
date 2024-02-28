@@ -1,10 +1,10 @@
 #minttyのカラー設定
 source ~/etc/mintty-colors-solarized/sol.light
 #X11
-export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0.0
+#export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0.0
 #export LIBGL_ALWAYS_INDIRECT=yes
 #xauth
-xauth generate $DISPLAY
+#xauth generate $DISPLAY
 #homebrew
 export HOMEBREW_PREFIX=$(brew --prefix)
 export HOMEBREW_CELLAR=$(brew --prefix)"/Cellar";
