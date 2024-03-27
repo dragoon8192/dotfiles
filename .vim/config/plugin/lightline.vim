@@ -5,7 +5,7 @@ let g:lightline = {
     \   'active': {
     \       'left': [ [ 'mode', 'paste' ],
     \                 [ 'readonly', 'gitbranch', 'filename', 'modified' ] ],
-    \       'right':[ [ 'lineinfo' ],
+    \       'right':[ [ 'lineinfo', 'datetime' ],
     \                 [ 'percent' ],
     \                 [ 'fileformat', 'fileencoding', 'filetype' ] ]
     \   },
@@ -42,6 +42,7 @@ let g:lightline = {
     \   'component_function': {
     \       'gitbranch': 'LightlineGitbranch',
     \       'filename': 'LightlineFilename',
+    \       'datetime': 'LightlineDateTime',
     \   },
     \   'separator': {
     \       'left': g:powerlineChars.tri_r,
@@ -66,4 +67,8 @@ endfunction
 
 function! LightlineFilename()
     return g:powerlineChars.cd . expand('%:t')
+endfunction
+
+function! LightlineDateTime()
+    return system('echo -n 󱑁`date "+%H:%M"`')
 endfunction
