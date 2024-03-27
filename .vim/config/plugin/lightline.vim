@@ -7,12 +7,13 @@ let g:lightline = {
     \                 [ 'readonly', 'gitbranch', 'filename', 'modified' ] ],
     \       'right':[ [ 'lineinfo', 'datetime' ],
     \                 [ 'percent' ],
-    \                 [ 'fileformat', 'fileencoding', 'filetype' ] ]
+    \                 [ 'filetype', 'lsp_diagnostics'] ]
     \   },
     \   'inactive': {
     \       'left': [ [ 'filename' ] ],
     \       'right':[ [ 'lineinfo' ],
-    \                 [ 'percent' ] ]
+    \                 [ 'percent' ],
+    \                 [ 'fileformat', 'fileencoding', 'filetype' ] ]
     \   },
     \   'tabline': {
     \       'left': [ [ 'tabs' ] ],
@@ -43,6 +44,7 @@ let g:lightline = {
     \       'gitbranch': 'LightlineGitbranch',
     \       'filename': 'LightlineFilename',
     \       'datetime': 'LightlineDateTime',
+    \       'lsp_diagnostics': 'LightlineLspDiagnotstic',
     \   },
     \   'separator': {
     \       'left': g:nerdIcons.tri_r,
@@ -54,7 +56,7 @@ let g:lightline = {
     \   },
     \ }
 
-function! LightlineGitbranch()
+function! LightlineGitbranch() abort
     if &filetype !~? 'vimfiler\|gundo' && exists('*FugitiveHead') && FugitiveHead() != ''
         return g:nerdIcons.git . FugitiveHead()
     else
@@ -62,10 +64,22 @@ function! LightlineGitbranch()
     endif
 endfunction
 
-function! LightlineFilename()
+function! LightlineFilename() abort
     return g:nerdIcons.cd . expand('%:t')
 endfunction
 
-function! LightlineDateTime()
+function! LightlineDateTime() abort
     return g:nerdIcons.time . system('echo -n `date "+%H:%M"`')
 endfunction
+
+function! LightlineLspDiagnotstic() abort
+    let l:counts = lsp#get_buffer_diagnostics_counts()
+    let l:errorStr = l:counts.error == 0 ? '' : g:nerdIcons.error . printf('%d', l:counts.error)
+    let l:warningStr = l:counts.warning == 0 ? '' : g:nerdIcons.warning . printf('%d', l:counts.warning)
+    return (l:counts.error + l:counts.warning) == 0 ? 'OK' : l:errorStr . l:warningStr
+endfunction
+
+augroup LightlineOnLSP
+    autocmd!
+    autocmd User lsp_diagnostics_updated call lightline#update()
+augroup END
