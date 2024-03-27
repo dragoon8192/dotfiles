@@ -4,6 +4,7 @@ let g:lsp_diagnostics_echo_cursor = v:false
 let g:lsp_diagnostics_float_cursor = v:true
 let g:lsp_diagnostics_float_delay = 200
 let g:lsp_signs_enabled = v:true
+" signs
 let g:lsp_diagnostics_signs_error = {'text': ''}
 let g:lsp_diagnostics_signs_warning = {'text': ''}
 let g:lsp_diagnostics_signs_information = {'text': ''}
