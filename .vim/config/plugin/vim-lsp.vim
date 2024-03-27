@@ -102,7 +102,7 @@ if executable('vim-language-server')
     augroup END
 endif
 
-# JavaScript, TypeScript
+" JavaScript, TypeScript
 if executable('typescript-language-server')
     augroup LspJavaScript
         autocmd!
@@ -124,7 +124,7 @@ if executable('typescript-language-server')
     augroup END
 endif
 
-# PureScript
+" PureScript
 if executable('purescript-language-server')
     augroup LspPureScript
         autocmd!
