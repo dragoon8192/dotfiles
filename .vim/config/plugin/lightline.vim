@@ -54,9 +54,6 @@ let g:lightline = {
     \   },
     \ }
 
-"let g:lightline.subseparator.left = g:nerdIcons.tri_line_r
-"let g:lightline.subseparator.right = g:nerdIcons.tri_line_l
-
 function! LightlineGitbranch()
     if &filetype !~? 'vimfiler\|gundo' && exists('*FugitiveHead') && FugitiveHead() != ''
         return g:nerdIcons.git . FugitiveHead()

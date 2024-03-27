@@ -18,5 +18,3 @@ let g:nerdIcons = {
     \   'hint':        '󰛨',
     \   'action':      '',
     \}
-
-
