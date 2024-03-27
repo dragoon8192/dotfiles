@@ -1,3 +1,49 @@
+let g:lsp_diagnostics_enabled = v:true
+let g:lsp_diagnostics_virtual_text_enabled = v:false
+let g:lsp_diagnostics_echo_cursor = v:false
+let g:lsp_diagnostics_float_cursor = v:true
+let g:lsp_diagnostics_float_delay = 200
+let g:lsp_signs_enabled = v:true
+let g:lsp_diagnostics_signs_error = {'text': ''}
+let g:lsp_diagnostics_signs_warning = {'text': ''}
+let g:lsp_diagnostics_signs_information = {'text': ''}
+let g:lsp_diagnostics_signs_hint = {'text': '󰛨'}
+
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    setlocal signcolumn=yes
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+    " mapping
+    map gl [vim-lsp]
+    nnoremap <buffer> [vim-lsp]D <plug>(lsp-definition)
+    nnoremap <buffer> [vim-lsp]d <plug>(lsp-peek-definition)
+    nnoremap <buffer> [vim-lsp]s <plug>(lsp-document-symbol-search)
+    nnoremap <buffer> [vim-lsp]S <plug>(lsp-workspace-symbol-search)
+    nnoremap <buffer> [vim-lsp]r <plug>(lsp-references)
+    nnoremap <buffer> [vim-lsp]i <plug>(lsp-implementation)
+    nnoremap <buffer> [vim-lsp]t <plug>(lsp-type-definition)
+    nnoremap <buffer> [vim-lsp]n <plug>(lsp-rename)
+    nnoremap <buffer> [vim-lsp][ <plug>(lsp-previous-diagnostic)
+    nnoremap <buffer> [vim-lsp]] <plug>(lsp-next-diagnostic)
+    nnoremap <buffer> [vim-lsp]a <plug>(lsp-code-action)
+    " nnoremap <buffer> gD <plug>(lsp-document-diagnostic)
+    nnoremap <buffer> <Leader>h <plug>(lsp-hover)
+    nnoremap <buffer> [vim-lsp]h <plug>(lsp-hover)
+    inoremap <buffer> <expr>[vim-lsp]d lsp#scroll(+4)
+    inoremap <buffer> <expr>[vim-lsp]h lsp#scroll(-4)
+
+    let g:lsp_format_sync_timeout = 1000
+    autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
+
+endfunction
+
+augroup lsp_install
+    autocmd!
+    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+
+" Rust
 if executable('rust-analyzer')
   au User lsp_setup call lsp#register_server({
         \   'name': 'Rust Language Server',
@@ -16,6 +62,7 @@ if executable('rust-analyzer')
         \ })
 endif
 
+" Haskell
 if executable('haskell-language-server-wrapper')
     augroup LspHaskell
         autocmd!
@@ -37,6 +84,7 @@ if executable('haskell-language-server-wrapper')
     augroup END
 endif
 
+" Vim
 if executable('vim-language-server')
     augroup LspVim
         autocmd!
@@ -54,6 +102,7 @@ if executable('vim-language-server')
     augroup END
 endif
 
+# JavaScript, TypeScript
 if executable('typescript-language-server')
     augroup LspJavaScript
         autocmd!
@@ -75,6 +124,7 @@ if executable('typescript-language-server')
     augroup END
 endif
 
+# PureScript
 if executable('purescript-language-server')
     augroup LspPureScript
         autocmd!
@@ -103,6 +153,7 @@ if executable('purescript-language-server')
     augroup END
 endif
 
+" Python
 if executable('pylsp')
     augroup LspPython
         autocmd!
@@ -126,44 +177,3 @@ if executable('pylsp')
         \ })
     augroup END
 endif
-
-function! s:on_lsp_buffer_enabled() abort
-    setlocal omnifunc=lsp#complete
-    setlocal signcolumn=yes
-    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-    " mapping
-    map gl [vim-lsp]
-    nnoremap <buffer> [vim-lsp]D <plug>(lsp-definition)
-    nnoremap <buffer> [vim-lsp]d <plug>(lsp-peek-definition)
-    nnoremap <buffer> [vim-lsp]s <plug>(lsp-document-symbol-search)
-    nnoremap <buffer> [vim-lsp]S <plug>(lsp-workspace-symbol-search)
-    nnoremap <buffer> [vim-lsp]r <plug>(lsp-references)
-    nnoremap <buffer> [vim-lsp]i <plug>(lsp-implementation)
-    nnoremap <buffer> [vim-lsp]t <plug>(lsp-type-definition)
-    nnoremap <buffer> [vim-lsp]n <plug>(lsp-rename)
-    nnoremap <buffer> [vim-lsp][ <plug>(lsp-previous-diagnostic)
-    nnoremap <buffer> [vim-lsp]] <plug>(lsp-next-diagnostic)
-    nnoremap <buffer> [vim-lsp]a <plug>(lsp-code-action)
-    " nnoremap <buffer> gD <plug>(lsp-document-diagnostic)
-    nnoremap <buffer> <Leader>h <plug>(lsp-hover)
-    nnoremap <buffer> [vim-lsp]h <plug>(lsp-hover)
-    inoremap <buffer> <expr>[vim-lsp]d lsp#scroll(+4)
-    inoremap <buffer> <expr>[vim-lsp]h lsp#scroll(-4)
-
-    let g:lsp_diagnostics_enabled = v:true
-    let g:lsp_diagnostics_virtual_text_enabled = v:false
-    let g:lsp_diagnostics_echo_cursor = v:false
-    let g:lsp_diagnostics_float_cursor = v:true
-    let g:lsp_diagnostics_float_delay = 200
-    let g:lsp_signs_enabled = v:true
-    let g:lsp_format_sync_timeout = 1000
-    autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
-    " refer to doc to add more commands
-
-endfunction
-
-augroup lsp_install
-    autocmd!
-    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
-    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-augroup END
