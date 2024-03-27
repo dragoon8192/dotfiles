@@ -11,6 +11,7 @@ let g:powerlineChars = {
     \   'git':        '',
     \   'lock':       '',
     \   'cd':         '❖ ',
+    \   'time':       '󱑁',
     \}
 
 

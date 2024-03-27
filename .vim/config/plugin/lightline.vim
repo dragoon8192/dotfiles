@@ -70,5 +70,5 @@ function! LightlineFilename()
 endfunction
 
 function! LightlineDateTime()
-    return system('echo -n 󱑁`date "+%H:%M"`')
+    return g:powerlineChars.time . system('echo -n `date "+%H:%M"`')
 endfunction
