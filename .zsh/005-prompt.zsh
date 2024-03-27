@@ -6,7 +6,7 @@
     #    8: base02   9: orange  10: base01  11: base00
     #   12: base0   13: violet  14: base1   15: base2
 #text
-typeset c_tri_r='%1{%}' c_tri_l='%1{%}' c_git='%1{%}' c_cd='%1{❖%}'
+typeset c_tri_r='%1{%}' c_tri_l='%1{%}' c_git='%1{%}' c_cd='%0{%}'
 # typeset c_tri_r='' c_tri_l='' c_git='' c_cd='❖ '
 # Associative array
 typeset -i size_aa=8

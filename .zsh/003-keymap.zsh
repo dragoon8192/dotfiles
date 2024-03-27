@@ -12,3 +12,6 @@ bindkey -a "t" up-line-or-history
 bindkey -a "n" vi-forward-char
 bindkey -a "k" vi-delete
 bindkey -a "s" vi-repeat-search
+
+bindkey -v "^P" history-beginning-search-backward
+bindkey -v "^N" history-beginning-search-forward

@@ -2,11 +2,6 @@ for f in ~/.zsh/*.zsh ; do
     source $f
 done
 ##OSによる分岐
-case ${OSTYPE} in
-    darwin*)
-        source ~/.zsh/zshrc.darwin
-        ;;
-    linux*)
-        source ~/.zsh/zshrc.linux
-        ;;
-esac
+for f in ~/.zsh/$(uname -s)-$(uname -n)/*.zsh ; do
+    source $f
+done
