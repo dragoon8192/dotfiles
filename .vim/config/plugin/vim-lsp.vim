@@ -131,7 +131,6 @@ function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
     setlocal signcolumn=yes
     if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-
     " mapping
     map gl [vim-lsp]
     nnoremap <buffer> [vim-lsp]D <plug>(lsp-definition)
@@ -151,15 +150,20 @@ function! s:on_lsp_buffer_enabled() abort
     inoremap <buffer> <expr>[vim-lsp]d lsp#scroll(+4)
     inoremap <buffer> <expr>[vim-lsp]h lsp#scroll(-4)
 
+    let g:lsp_diagnostics_enabled = v:true
+    let g:lsp_diagnostics_virtual_text_enabled = v:false
+    let g:lsp_diagnostics_echo_cursor = v:false
+    let g:lsp_diagnostics_float_cursor = v:true
+    let g:lsp_diagnostics_float_delay = 200
+    let g:lsp_signs_enabled = v:true
     let g:lsp_format_sync_timeout = 1000
     autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
     " refer to doc to add more commands
+
 endfunction
 
 augroup lsp_install
-    au!
-    " let g:lsp_diagnostics_echo_cursor = 1
-    let g:lsp_diagnostics_float_cursor = 1
+    autocmd!
     " call s:on_lsp_buffer_enabled only for languages that has the server registered.
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
