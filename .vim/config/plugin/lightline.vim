@@ -45,30 +45,30 @@ let g:lightline = {
     \       'datetime': 'LightlineDateTime',
     \   },
     \   'separator': {
-    \       'left': g:powerlineChars.tri_r,
-    \       'right':g:powerlineChars.tri_l,
+    \       'left': g:nerdIcons.tri_r,
+    \       'right':g:nerdIcons.tri_l,
     \   },
     \   'subseparator': {
-    \       'left': g:powerlineChars.tri_line_r,
-    \       'right':g:powerlineChars.tri_line_l,
+    \       'left': g:nerdIcons.tri_line_r,
+    \       'right':g:nerdIcons.tri_line_l,
     \   },
     \ }
 
-"let g:lightline.subseparator.left = g:powerlineChars.tri_line_r
-"let g:lightline.subseparator.right = g:powerlineChars.tri_line_l
+"let g:lightline.subseparator.left = g:nerdIcons.tri_line_r
+"let g:lightline.subseparator.right = g:nerdIcons.tri_line_l
 
 function! LightlineGitbranch()
     if &filetype !~? 'vimfiler\|gundo' && exists('*FugitiveHead') && FugitiveHead() != ''
-        return g:powerlineChars.git . FugitiveHead()
+        return g:nerdIcons.git . FugitiveHead()
     else
         return ''
     endif
 endfunction
 
 function! LightlineFilename()
-    return g:powerlineChars.cd . expand('%:t')
+    return g:nerdIcons.cd . expand('%:t')
 endfunction
 
 function! LightlineDateTime()
-    return g:powerlineChars.time . system('echo -n `date "+%H:%M"`')
+    return g:nerdIcons.time . system('echo -n `date "+%H:%M"`')
 endfunction
