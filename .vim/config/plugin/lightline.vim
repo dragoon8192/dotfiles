@@ -69,8 +69,10 @@ function! LightlineFilename() abort
 endfunction
 
 function! LightlineDateTime() abort
-"    return g:nerdIcons.time . system('echo `date "+%H:%M"`')
+    return g:nerdIcons.time .  strftime('%H:%M:%S')
 endfunction
+
+call timer_start(1000, {-> execute('call lightline#update()')}, { 'repeat' : -1 })
 
 function! LightlineLspDiagnotstic() abort
     let l:counts = lsp#get_buffer_diagnostics_counts()
