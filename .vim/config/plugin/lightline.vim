@@ -69,7 +69,7 @@ function! LightlineFilename() abort
 endfunction
 
 function! LightlineDateTime() abort
-    return g:nerdIcons.time . system('echo -n `date "+%H:%M"`')
+"    return g:nerdIcons.time . system('echo `date "+%H:%M"`')
 endfunction
 
 function! LightlineLspDiagnotstic() abort
@@ -83,3 +83,12 @@ augroup LightlineOnLSP
     autocmd!
     autocmd User lsp_diagnostics_updated call lightline#update()
 augroup END
+
+function! s:get_allowed_servers_on_current_buf() abort
+    let l:buf = bufnr('%')
+    if getbufvar(l:buf, '&buftype') ==# 'terminal'
+        return []
+    else
+        return lsp#get_allowed_servers(l:buf)
+    endif
+endfunction
