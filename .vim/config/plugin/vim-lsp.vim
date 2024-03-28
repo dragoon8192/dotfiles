@@ -47,7 +47,7 @@ augroup END
 if executable('rust-analyzer')
   au User lsp_setup call lsp#register_server({
         \   'name': 'Rust Language Server',
-        \   'name': g:nerdIcons.rust,
+        \   'icon': g:nerdIcons.rust,
         \   'cmd': {server_info->['rust-analyzer']},
         \   'allowlist': ['rust'],
         \   'initialization_options': {
