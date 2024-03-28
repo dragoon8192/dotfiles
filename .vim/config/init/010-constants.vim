@@ -17,4 +17,10 @@ let g:nerdIcons = {
     \   'information': '',
     \   'hint':        '󰛨',
     \   'action':      '',
+    \   'haskell':     '󰲒',
+    \   'javascript':  '󰌞',
+    \   'purescript':  '',
+    \   'python':      '',
+    \   'rust':        '󱘗',
+    \   'vim':         '',
     \}

@@ -47,6 +47,7 @@ augroup END
 if executable('rust-analyzer')
   au User lsp_setup call lsp#register_server({
         \   'name': 'Rust Language Server',
+        \   'name': g:nerdIcons.rust,
         \   'cmd': {server_info->['rust-analyzer']},
         \   'allowlist': ['rust'],
         \   'initialization_options': {
@@ -68,6 +69,7 @@ if executable('haskell-language-server-wrapper')
         autocmd!
         autocmd User lsp_setup call lsp#register_server({
         \   'name': 'Haskell-LS',
+        \   'icon': g:nerdIcons.haskell,
         \   'cmd': {
         \       server_info->['haskell-language-server-wrapper', '--lsp']
         \   },
@@ -90,6 +92,7 @@ if executable('vim-language-server')
         autocmd!
         autocmd User lsp_setup call lsp#register_server({
         \   'name': 'Vim-LS',
+        \   'icon': g:nerdIcons.vim,
         \   'cmd': {
         \       server_info->['vim-language-server', '--stdio']
         \   },
@@ -108,6 +111,7 @@ if executable('typescript-language-server')
         autocmd!
         autocmd User lsp_setup call lsp#register_server({
         \   'name': 'TypeScript-LS for JS',
+        \   'icon': g:nerdIcons.javascript,
         \   'cmd': {
         \       server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']
         \   },
@@ -130,6 +134,7 @@ if executable('purescript-language-server')
         autocmd!
         autocmd User lsp_setup call lsp#register_server({
         \   'name': 'PureScript-LS',
+        \   'icon': g:nerdIcons.purescript,
         \   'cmd': {
         \       server_info->['purescript-language-server', '--stdio']
         \   },
@@ -159,6 +164,7 @@ if executable('pylsp')
         autocmd!
         autocmd User lsp_setup call lsp#register_server({
         \   'name': 'pylsp',
+        \   'icon': g:nerdIcons.python,
         \   'cmd': {
         \       server_info->['pylsp']
         \   },
