@@ -94,3 +94,9 @@ function! s:get_allowed_servers_on_current_buf() abort
         return lsp#get_allowed_servers(l:buf)
     endif
 endfunction
+
+function! LightlineLspStatus() abort
+    let servers = s:get_allowed_servers_on_current_buf()
+    let status =  map(servers, {i, s -> s . ": " . lsp#get_server_status(s)})
+    return lightline#concatenate(status, v:true)
+endfunction
