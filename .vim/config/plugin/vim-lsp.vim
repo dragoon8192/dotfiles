@@ -33,10 +33,8 @@ function! s:on_lsp_buffer_enabled() abort
     nnoremap <buffer> [vim-lsp]h <plug>(lsp-hover)
     inoremap <buffer> <expr>[vim-lsp]d lsp#scroll(+4)
     inoremap <buffer> <expr>[vim-lsp]h lsp#scroll(-4)
-
     let g:lsp_format_sync_timeout = 1000
     autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
-
 endfunction
 
 augroup lsp_install
