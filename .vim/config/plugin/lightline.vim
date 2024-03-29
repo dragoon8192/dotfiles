@@ -7,7 +7,7 @@ let g:lightline = {
     \                 [ 'readonly', 'gitbranch', 'filename', 'modified' ] ],
     \       'right':[ [ 'lineinfo', 'datetime' ],
     \                 [ 'percent' ],
-    \                 [ 'filetype', 'lsp_status'] ]
+    \                 [ 'filetype', 'lsp_status', 'lsp_warning', 'lsp_error'] ]
     \   },
     \   'inactive': {
     \       'left': [ [ 'filename' ] ],
@@ -20,32 +20,37 @@ let g:lightline = {
     \       'right':[ [ 'close' ] ]
     \   },
     \   'component': {
-    \       'mode': '%{lightline#mode()}',
+    \       'mode':         '%{lightline#mode()}',
     \       'absolutepath': '%F',
     \       'relativepath': '%f',
-    \       'modified': '%M',
-    \       'bufnum': '%n',
-    \       'paste': '%{&paste?"PASTE":""}',
-    \       'readonly': '%R',
-    \       'charvalue': '%b',
+    \       'modified':     '%M',
+    \       'bufnum':       '%n',
+    \       'paste':        '%{&paste?"PASTE":""}',
+    \       'readonly':     '%R',
+    \       'charvalue':    '%b',
     \       'charvaluehex': '%04B',
     \       'fileencoding': '%{&fenc!=#""?&fenc:&enc}',
-    \       'fileformat': '%{&ff}',
-    \       'filetype': '%{&ft!=#""?&ft:"no ft"}',
-    \       'percent': '%3p%%',
-    \       'percentwin': '%P',
-    \       'spell': '%{&spell?&spelllang:""}',
-    \       'lineinfo': '%3l:%-2c',
-    \       'line': '%l',
-    \       'column': '%c',
-    \       'close': '%999X X ',
-    \       'winnr': '%{winnr()}' },
+    \       'fileformat':   '%{&ff}',
+    \       'filetype':     '%{&ft!=#""?&ft:"no ft"}',
+    \       'percent':      '%3p%%',
+    \       'percentwin':   '%P',
+    \       'spell':        '%{&spell?&spelllang:""}',
+    \       'lineinfo':     '%3l:%-2c',
+    \       'line':         '%l',
+    \       'column':       '%c',
+    \       'close':        '%999X X ',
+    \       'winnr':        '%{winnr()}',
+    \   },
     \   'component_function': {
-    \       'gitbranch': 'LightlineGitbranch',
-    \       'filename': 'LightlineFilename',
-    \       'datetime': 'LightlineDateTime',
+    \       'gitbranch':       'LightlineGitbranch',
+    \       'filename':        'LightlineFilename',
+    \       'datetime':        'LightlineDateTime',
     \       'lsp_diagnostics': 'LightlineLspDiagnotstic',
-    \       'lsp_status': 'LightlineLspStatus',
+    \       'lsp_status':      'LightlineLspStatus',
+    \       'lsp_error':       'LightlineLspError',
+    \       'lsp_warning':     'LightlineLspWarning',
+    \       'lsp_information': 'LightlineLspInformation',
+    \       'lsp_hint':        'LightlineLspHint',
     \   },
     \   'separator': {
     \       'left': g:nerdIcons.tri_r,
@@ -116,16 +121,42 @@ function! LightlineLspStatus() abort
         let l:status =  map(l:servers, {i, s -> s:get_lsp_server_icon(s) . '' . s:lsp_server_status_to_icon(lsp#get_server_status(s))})
         return lightline#concatenate(l:status, v:true)
     else
-        let l:errorStr = l:diag_counts.error == 0 ? '' : g:nerdIcons.error . printf('%d', l:diag_counts.error)
-        let l:warningStr = l:diag_counts.warning == 0 ? '' : g:nerdIcons.warning . printf('%d', l:diag_counts.warning)
-        return lightline#concatenate([l:errorStr, l:warningStr], v:true)
+        return ''
     endif
 endfunction
 
-function! LightlineLspDiagnotstic() abort
+function! LightlineLspError() abort
     let l:counts = lsp#get_buffer_diagnostics_counts()
-    let l:errorStr = l:counts.error == 0 ? '' : g:nerdIcons.error . printf('%d', l:counts.error)
-    let l:warningStr = l:counts.warning == 0 ? '' : g:nerdIcons.warning . printf('%d', l:counts.warning)
-    return (l:counts.error + l:counts.warning) == 0 ? 'OK' : l:errorStr . l:warningStr
+    if l:counts.error == 0
+        return ''
+    else
+        return g:nerdIcons.error . string(l:counts.error)
+    endif
 endfunction
 
+function! LightlineLspWarning() abort
+    let l:counts = lsp#get_buffer_diagnostics_counts()
+    if l:counts.warning == 0
+        return ''
+    else
+        return g:nerdIcons.warning . string(l:counts.warning)
+    endif
+endfunction
+
+function! LightlineLspInformation() abort
+    let l:counts = lsp#get_buffer_diagnostics_counts()
+    if l:counts.information == 0
+        return ''
+    else
+        return g:nerdIcons.information . string(l:counts.information)
+    endif
+endfunction
+
+function! LightlineLspHint() abort
+    let l:counts = lsp#get_buffer_diagnostics_counts()
+    if l:counts.hint == 0
+        return ''
+    else
+        return g:nerdIcons.hint . string(l:counts.hint)
+    endif
+endfunction
