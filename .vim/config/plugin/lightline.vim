@@ -7,7 +7,7 @@ let g:lightline = {
     \                 [ 'readonly', 'gitbranch', 'filename', 'modified' ] ],
     \       'right':[ [ 'lineinfo', 'datetime' ],
     \                 [ 'percent' ],
-    \                 [ 'filetype', 'lsp_diagnostics'] ]
+    \                 [ 'filetype', 'lsp_status'] ]
     \   },
     \   'inactive': {
     \       'left': [ [ 'filename' ] ],
@@ -45,6 +45,7 @@ let g:lightline = {
     \       'filename': 'LightlineFilename',
     \       'datetime': 'LightlineDateTime',
     \       'lsp_diagnostics': 'LightlineLspDiagnotstic',
+    \       'lsp_status': 'LightlineLspStatus',
     \   },
     \   'separator': {
     \       'left': g:nerdIcons.tri_r,
@@ -109,9 +110,16 @@ function! s:get_lsp_server_icon(server_name) abort
 endfunction
 
 function! LightlineLspStatus() abort
-    let l:servers = s:get_allowed_servers_on_current_buf()
-    let status =  map(l:servers, {i, s -> s:get_lsp_server_icon(s) . ": " . s:lsp_server_status_to_icon(lsp#get_server_status(s))})
-    return lightline#concatenate(status, v:true)
+    let l:diag_counts = lsp#get_buffer_diagnostics_counts()
+    if (l:diag_counts.error + l:diag_counts.warning) == 0
+        let l:servers = s:get_allowed_servers_on_current_buf()
+        let l:status =  map(l:servers, {i, s -> s:get_lsp_server_icon(s) . '' . s:lsp_server_status_to_icon(lsp#get_server_status(s))})
+        return lightline#concatenate(l:status, v:true)
+    else
+        let l:errorStr = l:diag_counts.error == 0 ? '' : g:nerdIcons.error . printf('%d', l:diag_counts.error)
+        let l:warningStr = l:diag_counts.warning == 0 ? '' : g:nerdIcons.warning . printf('%d', l:diag_counts.warning)
+        return lightline#concatenate([l:errorStr, l:warningStr], v:true)
+    endif
 endfunction
 
 function! LightlineLspDiagnotstic() abort
