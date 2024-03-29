@@ -1,3 +1,16 @@
+let g:lsp_diagnostics_enabled = v:true
+let g:lsp_diagnostics_virtual_text_enabled = v:false
+let g:lsp_diagnostics_echo_cursor = v:false
+let g:lsp_diagnostics_float_cursor = v:true
+let g:lsp_diagnostics_float_delay = 200
+let g:lsp_signs_enabled = v:true
+" signs
+let g:lsp_diagnostics_signs_error = {'text': g:nerdIcons.error}
+let g:lsp_diagnostics_signs_warning = {'text': g:nerdIcons.warning}
+let g:lsp_diagnostics_signs_information = {'text': g:nerdIcons.information}
+let g:lsp_diagnostics_signs_hint = {'text': g:nerdIcons.hint}
+let g:lsp_document_code_action_signs_hint = {'text': g:nerdIcons.action}
+
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
     setlocal signcolumn=yes
@@ -22,19 +35,6 @@ function! s:on_lsp_buffer_enabled() abort
     inoremap <buffer> <expr>[vim-lsp]h lsp#scroll(-4)
     let g:lsp_format_sync_timeout = 1000
     autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
-
-    let g:lsp_diagnostics_enabled = v:true
-    let g:lsp_diagnostics_virtual_text_enabled = v:false
-    let g:lsp_diagnostics_echo_cursor = v:false
-    let g:lsp_diagnostics_float_cursor = v:true
-    let g:lsp_diagnostics_float_delay = 200
-    let g:lsp_signs_enabled = v:true
-    " signs
-    let g:lsp_diagnostics_signs_error = {'text': g:nerdIcons.error}
-    let g:lsp_diagnostics_signs_warning = {'text': g:nerdIcons.warning}
-    let g:lsp_diagnostics_signs_information = {'text': g:nerdIcons.information}
-    let g:lsp_diagnostics_signs_hint = {'text': g:nerdIcons.hint}
-    let g:lsp_document_code_action_signs_hint = {'text': g:nerdIcons.action}
 endfunction
 
 augroup lsp_install
