@@ -74,12 +74,7 @@ endfunction
 
 call timer_start(1000, {-> execute('call lightline#update()')}, { 'repeat' : -1 })
 
-function! LightlineLspDiagnotstic() abort
-    let l:counts = lsp#get_buffer_diagnostics_counts()
-    let l:errorStr = l:counts.error == 0 ? '' : g:nerdIcons.error . printf('%d', l:counts.error)
-    let l:warningStr = l:counts.warning == 0 ? '' : g:nerdIcons.warning . printf('%d', l:counts.warning)
-    return (l:counts.error + l:counts.warning) == 0 ? 'OK' : l:errorStr . l:warningStr
-endfunction
+" with vim-lsp
 
 augroup LightlineOnLSP
     autocmd!
@@ -95,8 +90,34 @@ function! s:get_allowed_servers_on_current_buf() abort
     endif
 endfunction
 
+function! s:lsp_server_status_to_icon(str) abort
+    if a:str ==# 'exited'
+        return g:nerdIcons.exit
+    elseif a:str ==# 'starting'
+        return g:nerdIcons.wait
+    elseif a:str ==# 'running'
+        return g:nerdIcons.robot
+    elseif a:str ==# 'not running'
+        return g:nerdIcons.robot_off
+    else
+        return g:nerdIcons.error
+    endif
+endfunction
+
+function! s:get_lsp_server_icon(server_name) abort
+    return lsp#get_server_info(a:server_name).icon
+endfunction
+
 function! LightlineLspStatus() abort
-    let servers = s:get_allowed_servers_on_current_buf()
-    let status =  map(servers, {i, s -> s . ": " . lsp#get_server_status(s)})
+    let l:servers = s:get_allowed_servers_on_current_buf()
+    let status =  map(l:servers, {i, s -> s:get_lsp_server_icon(s) . ": " . s:lsp_server_status_to_icon(lsp#get_server_status(s))})
     return lightline#concatenate(status, v:true)
 endfunction
+
+function! LightlineLspDiagnotstic() abort
+    let l:counts = lsp#get_buffer_diagnostics_counts()
+    let l:errorStr = l:counts.error == 0 ? '' : g:nerdIcons.error . printf('%d', l:counts.error)
+    let l:warningStr = l:counts.warning == 0 ? '' : g:nerdIcons.warning . printf('%d', l:counts.warning)
+    return (l:counts.error + l:counts.warning) == 0 ? 'OK' : l:errorStr . l:warningStr
+endfunction
+
