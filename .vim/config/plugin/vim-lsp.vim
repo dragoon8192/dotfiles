@@ -45,22 +45,25 @@ augroup END
 
 " Rust
 if executable('rust-analyzer')
-  au User lsp_setup call lsp#register_server({
-        \   'name': 'Rust Language Server',
-        \   'icon': g:nerdIcons.rust,
-        \   'cmd': {server_info->['rust-analyzer']},
-        \   'allowlist': ['rust'],
+    augroup LspRust
+        autocmd!
+        autocmd User lsp_setup call lsp#register_server({
+        \   'name':                   'Rust Language Server',
+        \   'icon':                   g:nerdIcons.rust,
+        \   'cmd':                    {server_info->['rust-analyzer']},
+        \   'allowlist':              ['rust'],
         \   'initialization_options': {
-        \     'cargo': {
-        \       'buildScripts': {
-        \         'enable': v:true,
+        \       'cargo': {
+        \           'buildScripts': {
+        \               'enable': v:true,
+        \           },
         \       },
-        \     },
-        \     'procMacro': {
-        \       'enable': v:true,
-        \     },
+        \       'procMacro': {
+        \           'enable': v:true,
+        \       },
         \   },
         \ })
+    augroup END
 endif
 
 " Haskell
@@ -68,13 +71,13 @@ if executable('haskell-language-server-wrapper')
     augroup LspHaskell
         autocmd!
         autocmd User lsp_setup call lsp#register_server({
-        \   'name': 'Haskell-LS',
-        \   'icon': g:nerdIcons.haskell,
-        \   'cmd': {
+        \   'name':      'Haskell-LS',
+        \   'icon':      g:nerdIcons.haskell,
+        \   'cmd':       {
         \       server_info->['haskell-language-server-wrapper', '--lsp']
         \   },
         \   'allowlist': ['haskell', 'lhaskell'],
-        \   'root_uri': {
+        \   'root_uri':  {
         \       server_info->lsp#utils#path_to_uri(
         \           lsp#utils#find_nearest_parent_file_directory(
         \               lsp#utils#get_buffer_path(),
@@ -91,12 +94,12 @@ if executable('vim-language-server')
     augroup LspVim
         autocmd!
         autocmd User lsp_setup call lsp#register_server({
-        \   'name': 'Vim-LS',
-        \   'icon': g:nerdIcons.vim,
-        \   'cmd': {
+        \   'name':                   'Vim-LS',
+        \   'icon':                   g:nerdIcons.vim,
+        \   'cmd':                    {
         \       server_info->['vim-language-server', '--stdio']
         \   },
-        \   'allowlist': ['vim'],
+        \   'allowlist':              ['vim'],
         \   'initialization_options': {
         \       'vimruntime': $VIMRUNTIME,
         \       'runtimepath': &rtp,
@@ -110,13 +113,13 @@ if executable('typescript-language-server')
     augroup LspJavaScript
         autocmd!
         autocmd User lsp_setup call lsp#register_server({
-        \   'name': 'TypeScript-LS for JS',
-        \   'icon': g:nerdIcons.javascript,
-        \   'cmd': {
+        \   'name':      'TypeScript-LS for JS',
+        \   'icon':      g:nerdIcons.javascript,
+        \   'cmd':       {
         \       server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']
         \   },
         \   'allowlist': ['javascript', 'javascript.jsx', 'javascriptreact'],
-        \   'root_uri': {
+        \   'root_uri':  {
         \       server_info->lsp#utils#path_to_uri(
         \           lsp#utils#find_nearest_parent_file_directory(
         \               lsp#utils#get_buffer_path(),
@@ -133,13 +136,13 @@ if executable('purescript-language-server')
     augroup LspPureScript
         autocmd!
         autocmd User lsp_setup call lsp#register_server({
-        \   'name': 'PureScript-LS',
-        \   'icon': g:nerdIcons.purescript,
-        \   'cmd': {
+        \   'name':      'PureScript-LS',
+        \   'icon':      g:nerdIcons.purescript,
+        \   'cmd':       {
         \       server_info->['purescript-language-server', '--stdio']
         \   },
         \   'allowlist': ['purescript'],
-        \   'root_uri': {
+        \   'root_uri':  {
         \       server_info->lsp#utils#path_to_uri(
         \           lsp#utils#find_nearest_parent_file_directory(
         \               lsp#utils#get_buffer_path(),
@@ -163,12 +166,12 @@ if executable('pylsp')
     augroup LspPython
         autocmd!
         autocmd User lsp_setup call lsp#register_server({
-        \   'name': 'pylsp',
-        \   'icon': g:nerdIcons.python,
-        \   'cmd': {
+        \   'name':             'pylsp',
+        \   'icon':             g:nerdIcons.python,
+        \   'cmd':              {
         \       server_info->['pylsp']
         \   },
-        \   'allowlist': ['python'],
+        \   'allowlist':        ['python'],
         \   'workspace_config': {
         \       'pylsp': {
         \           'plugins': {

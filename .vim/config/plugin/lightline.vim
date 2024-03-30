@@ -3,21 +3,27 @@ set noshowmode
 let g:lightline = {
     \   'colorscheme': 'solarized',
     \   'active': {
-    \       'left': [ [ 'mode', 'paste' ],
-    \                 [ 'readonly', 'gitbranch', 'filename', 'modified' ] ],
-    \       'right':[ [ 'lineinfo', 'datetime' ],
-    \                 [ 'percent' ],
-    \                 [ 'filetype', 'lsp_status', 'lsp_warning', 'lsp_error'] ]
+    \       'left': [
+    \           [ 'mode', 'paste' ],
+    \           [ 'readonly', 'gitbranch', 'filename', 'modified' ],
+    \       ],
+    \       'right': [
+    \           [ 'lineinfo', 'datetime' ],
+    \           [ 'percent' ],
+    \           [ 'filetype', 'lsp_status', 'lsp_warning', 'lsp_error'],
+    \       ]
     \   },
     \   'inactive': {
     \       'left': [ [ 'filename' ] ],
-    \       'right':[ [ 'lineinfo' ],
-    \                 [ 'percent' ],
-    \                 [ 'fileformat', 'fileencoding', 'filetype' ] ]
+    \       'right':[
+    \           [ 'lineinfo' ],
+    \           [ 'percent' ],
+    \           [ 'fileformat', 'fileencoding', 'filetype' ],
+    \       ]
     \   },
     \   'tabline': {
-    \       'left': [ [ 'tabs' ] ],
-    \       'right':[ [ 'close' ] ]
+    \       'left':  [ [ 'tabs' ] ],
+    \       'right': [ [ 'close' ] ]
     \   },
     \   'component': {
     \       'mode':         '%{lightline#mode()}',
