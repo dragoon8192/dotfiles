@@ -68,14 +68,6 @@ let g:lightline = {
     \   },
     \ }
 
-function! LightlineGitbranch() abort
-    if &filetype !~? 'vimfiler\|gundo' && exists('*FugitiveHead') && FugitiveHead() != ''
-        return g:nerdIcons.git . FugitiveHead()
-    else
-        return ''
-    endif
-endfunction
-
 function! LightlineFilename() abort
     return g:nerdIcons.cd . expand('%:t')
 endfunction
@@ -85,6 +77,15 @@ function! LightlineDateTime() abort
 endfunction
 
 call timer_start(1000, {-> execute('call lightline#update()')}, { 'repeat' : -1 })
+
+" with fugitive
+function! LightlineGitbranch() abort
+    if &filetype !~? 'vimfiler\|gundo' && exists('*FugitiveHead') && FugitiveHead() != ''
+        return g:nerdIcons.git . FugitiveHead()
+    else
+        return ''
+    endif
+endfunction
 
 " with vim-lsp
 
