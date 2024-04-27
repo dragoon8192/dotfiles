@@ -17,7 +17,7 @@ function! s:on_lsp_buffer_enabled() abort
     setlocal signcolumn=yes
     if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
     " mapping
-    map gl [vim-lsp]
+    map <Leader>l [vim-lsp]
     nnoremap <buffer> [vim-lsp]D <plug>(lsp-definition)
     nnoremap <buffer> [vim-lsp]d <plug>(lsp-peek-definition)
     nnoremap <buffer> [vim-lsp]s <plug>(lsp-document-symbol-search)
