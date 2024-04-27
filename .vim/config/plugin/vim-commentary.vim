@@ -1,8 +1,8 @@
 " Remove original keybindings.
-nunmap gc
-nunmap gcc
-xunmap gc
-ounmap gc
+silent! nunmap gc
+silent! nunmap gcc
+silent! xunmap gc
+silent! ounmap gc
 
 noremap [vim-commentary] <Nop>
 map <Leader>c [vim-commentary]
