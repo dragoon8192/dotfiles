@@ -1,19 +1,42 @@
 "Dvorak用
 inoremap <silent> hh <ESC>
 
-noremap h <Nop>
-noremap j <Nop>
-noremap k <Nop>
-noremap l <Nop>
+nnoremap h <Nop>
+nnoremap j <Nop>
+nnoremap k <Nop>
+nnoremap l <Nop>
+nnoremap t <Nop>
+nnoremap s <Nop>
 
-noremap t <Nop>
-noremap s <Nop>
+xnoremap h <Nop>
+xnoremap j <Nop>
+xnoremap k <Nop>
+xnoremap l <Nop>
+xnoremap t <Nop>
+xnoremap s <Nop>
+
+onoremap h <Nop>
+onoremap j <Nop>
+onoremap k <Nop>
+onoremap l <Nop>
+onoremap t <Nop>
+onoremap s <Nop>
 
 " Move
-noremap d h
-noremap h j
-noremap t k
-noremap n l
+nnoremap d h
+nnoremap h j
+nnoremap t k
+nnoremap n l
+
+xnoremap d h
+xnoremap h j
+xnoremap t k
+xnoremap n l
+
+onoremap d h
+onoremap h j
+onoremap t k
+onoremap n l
 
 " Delete
 noremap k d

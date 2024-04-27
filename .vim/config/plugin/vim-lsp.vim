@@ -2,6 +2,7 @@ let g:lsp_diagnostics_enabled = v:true
 let g:lsp_diagnostics_virtual_text_enabled = v:false
 let g:lsp_diagnostics_echo_cursor = v:false
 let g:lsp_diagnostics_float_cursor = v:true
+let g:lsp_diagnostics_float_insert_mode_enabled = v:false
 let g:lsp_diagnostics_float_delay = 200
 let g:lsp_signs_enabled = v:true
 " signs
@@ -28,7 +29,7 @@ function! s:on_lsp_buffer_enabled() abort
     nnoremap <buffer> [vim-lsp][ <plug>(lsp-previous-diagnostic)
     nnoremap <buffer> [vim-lsp]] <plug>(lsp-next-diagnostic)
     nnoremap <buffer> [vim-lsp]a <plug>(lsp-code-action)
-    " nnoremap <buffer> gD <plug>(lsp-document-diagnostic)
+    nnoremap <buffer> [vim-lsp]H <plug>(lsp-document-diagnostics)
     nnoremap <buffer> <Leader>h <plug>(lsp-hover)
     nnoremap <buffer> [vim-lsp]h <plug>(lsp-hover)
     inoremap <buffer> <expr>[vim-lsp]d lsp#scroll(+4)
