@@ -40,14 +40,14 @@ onoremap n l
 
 " fold-jump
 
-nnoremap dz hz
-nnoremap hz jz
+nnoremap zd zh
+nnoremap zh zj
 
-xnoremap dz hz
-xnoremap hz jz
+xnoremap zd zh
+xnoremap zh zj
 
-onoremap dz hz
-onoremap hz jz
+onoremap zd zh
+onoremap zh zj
 
 " Delete
 noremap k d
