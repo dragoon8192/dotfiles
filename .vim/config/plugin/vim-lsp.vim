@@ -15,6 +15,9 @@ let g:lsp_document_code_action_signs_hint = {'text': g:nerdIcons.action}
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
     setlocal signcolumn=yes
+    setlocal foldmethod=expr
+    \   foldexpr=lsp#ui#vim#folding#foldexpr()
+    \   foldtext=lsp#ui#vim#folding#foldtext()
     if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
     " mapping
     map <Leader>l [vim-lsp]
