@@ -38,6 +38,17 @@ onoremap h j
 onoremap t k
 onoremap n l
 
+" fold-jump
+
+nnoremap dz hz
+nnoremap hz jz
+
+xnoremap dz hz
+xnoremap hz jz
+
+onoremap dz hz
+onoremap hz jz
+
 " Delete
 noremap k d
 " next
