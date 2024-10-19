@@ -14,11 +14,11 @@ let g:lightline = {
     \       ]
     \   },
     \   'inactive': {
-    \       'left': [ [ 'filename' ] ],
+    \       'left': [ [ 'filepath' ] ],
     \       'right':[
     \           [ 'lineinfo' ],
     \           [ 'percent' ],
-    \           [ 'fileformat', 'fileencoding', 'filetype' ],
+    \           [ 'filetype' ],
     \       ]
     \   },
     \   'tabline': {
@@ -49,7 +49,8 @@ let g:lightline = {
     \   },
     \   'component_function': {
     \       'gitbranch':       'LightlineGitbranch',
-    \       'filename':        'LightlineFilename',
+    \       'filename':        'LightlineFileName',
+    \       'filepath':        'LightlineFilePath',
     \       'datetime':        'LightlineDateTime',
     \       'lsp_diagnostics': 'LightlineLspDiagnotstic',
     \       'lsp_status':      'LightlineLspStatus',
@@ -68,8 +69,12 @@ let g:lightline = {
     \   },
     \ }
 
-function! LightlineFilename() abort
+function! LightlineFileName() abort
     return g:nerdIcons.cd . expand('%:t')
+endfunction
+
+function! LightlineFilePath() abort
+    return expand('%:.')
 endfunction
 
 function! LightlineDateTime() abort
