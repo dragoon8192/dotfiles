@@ -47,6 +47,19 @@ augroup lsp_install
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
+" bash, zsh, sh
+if executable('bash-language-server')
+    augroup LspBash
+        autocmd!
+        autocmd User lsp_setup call lsp#register_server({
+        \   'name':                   'Bash Language Server',
+        \   'icon':                   g:nerdIcons.bash,
+        \   'cmd':                    {server_info->['bash-language-server']},
+        \   'allowlist':              ['sh', 'bash', 'zsh'],
+        \ })
+    augroup END
+endif
+
 " Rust
 if executable('rust-analyzer')
     augroup LspRust

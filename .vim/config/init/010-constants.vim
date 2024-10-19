@@ -27,4 +27,5 @@ let g:nerdIcons = {
     \   'python':      '',
     \   'rust':        '󱘗',
     \   'vim':         '',
+    \   'bash':        '',
     \}
