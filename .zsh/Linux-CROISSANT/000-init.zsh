@@ -1,17 +1,6 @@
 # #minttyのカラー設定
 source ~/etc/mintty-colors-solarized/sol.light
 
-# #X11
-#export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0.0
-#export LIBGL_ALWAYS_INDIRECT=yes
-#xauth
-#xauth generate $DISPLAY
-
-# #HOMEBREW
-export HOMEBREW_PREFIX=$(brew --prefix)
-export HOMEBREW_CELLAR=$(brew --prefix)"/Cellar";
-export HOMEBREW_REPOSITORY=$(brew --prefix)"/Homebrew";
-
 # #ポートフォワーディング
 WSL2_IPV4=$(ip route | grep -Po '(?<=eth0 proto kernel scope link src )(\d{1,3}\.){3}\d{1,3}')
 HOST_IPV4=0.0.0.0
