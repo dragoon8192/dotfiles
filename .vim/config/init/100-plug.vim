@@ -30,6 +30,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-repeat'
     Plug 'tpope/vim-surround'
     Plug 'vim-jp/vimdoc-ja'
+    Plug 'lambdalisue/fern.vim'
+    Plug 'utubo/vim-registers-lite'
 "   Plug 'Yggdroot/indentLine'
 "   Plug 'mattn/vim-lsp-settings'
 call plug#end()
