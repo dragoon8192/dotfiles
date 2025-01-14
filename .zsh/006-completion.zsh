@@ -1,18 +1,19 @@
 # # 補完
 autoload -Uz compinit && compinit
-autoload -Uz bashcompinit && bashcompinit
 zstyle ':completion:*' menu select
+zstyle ':completion:*' file-patterns '*(-/)' '*'
+zstyle ':completion:*:descriptions' format '%B%d%b'
 setopt CORRECT
 # # ツールごとの補完
 # ## stack
-if [[ -x "stack" ]];then
+if command -v stack >/dev/null 2>&1;then
     eval "$(stack --bash-completion-script stack)"
 fi
-# ## wp-completion.bash
-if [[ -f ~/etc/wp-completion.bash ]];then
-    source ~/etc/wp-completion.bash
-fi
 # ## GitHub CLI
-if [[ -x "gh" ]];then
+if command -v gh >/dev/null 2>&1;then
     eval "$(gh completion -s zsh)"
+fi
+# ## npm
+if command -v npm >/dev/null 2>&1;then
+    eval "$(npm completion)"
 fi
