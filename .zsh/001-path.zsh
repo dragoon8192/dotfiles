@@ -16,3 +16,5 @@ function export_paths {
 }
 
 export_paths PATH MANPATH INFOPATH LIBRARY_PATH LD_LIBRARY_PATH
+
+[ -f "/home/dragoon8192/.ghcup/env" ] && . "/home/dragoon8192/.ghcup/env" # ghcup-env
