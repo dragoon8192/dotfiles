@@ -1,13 +1,13 @@
-"vim-plug
-"Install
-if empty(glob('~/.vim/autoload/plug.vim'))
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+vim9script
+# Install
+const data_dir = has('nvim') ? stdpath('data') .. '/site' : '~/.vim'
+if empty(glob(data_dir .. '/autoload/plug.vim'))
+    silent execute '!curl -fLo ' .. data_dir .. '/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
-"保存する場所をシングルクォート
-"https://github.com/hogehoge/plugin を入れたければ Plug 'hogehoge/plugin'
-call plug#begin('~/.vim/plugged')
+# 保存する場所をシングルクォート
+# https://github.com/hogehoge/plugin を入れたければ Plug 'hogehoge/plugin'
+plug#begin(data_dir .. '/plugged')
     Plug 'Shougo/vimproc.vim', {'do' : 'make'}
     Plug 'Twinside/vim-haskellFold'
     Plug 'hrsh7th/vim-vsnip'
@@ -32,7 +32,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'vim-jp/vimdoc-ja'
     Plug 'lambdalisue/fern.vim'
     Plug 'utubo/vim-registers-lite'
-"   Plug 'Yggdroot/indentLine'
-"   Plug 'mattn/vim-lsp-settings'
-call plug#end()
+    Plug 'junegunn/vim-plug'
+plug#end()
 filetype plugin on
