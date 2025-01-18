@@ -1,4 +1,5 @@
-"Dvorak用
+vim9script
+# Dvorak用
 inoremap <silent> hh <ESC>
 
 nnoremap h <Nop>
@@ -22,7 +23,7 @@ onoremap l <Nop>
 onoremap t <Nop>
 onoremap s <Nop>
 
-" Move
+# Move
 nnoremap d h
 nnoremap h j
 nnoremap t k
@@ -38,7 +39,7 @@ onoremap h j
 onoremap t k
 onoremap n l
 
-" fold-jump
+# fold-jump
 
 nnoremap zh zj
 nnoremap zt zk
@@ -49,9 +50,9 @@ xnoremap zt zk
 onoremap zh zj
 onoremap zt zk
 
-" Delete
+# Delete
 noremap k d
-" next
+# next
 noremap s n
 
 noremap T <Nop>
@@ -61,7 +62,7 @@ noremap K D
 noremap gK K
 noremap S N
 
-" window
+# window
 noremap <C-W>h <Nop>
 noremap <C-W>j <Nop>
 noremap <C-W>k <Nop>
@@ -82,7 +83,7 @@ noremap <C-W><C-H> <C-W><C-J>
 noremap <C-W><C-T> <C-W><C-K>
 noremap <C-W><C-N> <C-W><C-L>
 
-"for netrw
+# for netrw
 augroup dragoon8192-Dvorak
     autocmd!
     autocmd FileType netrw nnoremap <buffer> t k

@@ -1,2 +1,3 @@
-"jjでESC
-    inoremap <silent> jj <ESC>
+vim9script
+# jjでESC
+inoremap <silent> jj <ESC>

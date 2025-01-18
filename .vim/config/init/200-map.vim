@@ -1,10 +1,9 @@
-"いらない機能
-    nnoremap Q gq
-    nnoremap ZQ <Nop>
+vim9script
+nnoremap Q gq
+nnoremap ZQ <Nop>
 
-    let g:mapleader = "\<Space>"
-    imap <Nul> <C-Space>
-    nnoremap ; :
-    nnoremap q; q:
-    nnoremap : ;
-
+const g:mapleader = "\<Space>"
+imap <Nul> <C-Space>
+nnoremap ; :
+nnoremap q; q:
+nnoremap : ;
