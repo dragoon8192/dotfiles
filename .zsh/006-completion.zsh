@@ -9,6 +9,7 @@ setopt CORRECT
 if command -v stack >/dev/null 2>&1;then
     autoload -Uz bashcompinit && bashcompinit
     eval "$(stack --bash-completion-script stack)"
+    unfunction bashcompinit
 fi
 # ## GitHub CLI
 if command -v gh >/dev/null 2>&1;then
@@ -16,5 +17,7 @@ if command -v gh >/dev/null 2>&1;then
 fi
 # ## npm
 if command -v npm >/dev/null 2>&1;then
+    autoload -Uz bashcompinit && bashcompinit
     eval "$(npm completion)"
+    unfunction bashcompinit
 fi
