@@ -1,32 +1,33 @@
+vim9script
 set wildmenu
 set encoding=utf-8
 set helplang=ja,en
 
-"入力
-"Tabの表示幅
+# 入力
+# Tabの表示幅
     set tabstop=4
-"Tabで代わりにSpace
+# Tabで代わりにSpace
     set expandtab
-"Tabで入力される個数
+# Tabで入力される個数
     set softtabstop=4
-"インデント幅
+# インデント幅
     set shiftwidth=4
-"改行時の自動インデント
+# 改行時の自動インデント
     set smartindent
-"クリップボード
+# クリップボード
     set clipboard=unnamed,autoselect
-"backspace
+# backspace
     set backspace=indent,eol
 
-"表示
-"構文ハイライト
+# 表示
+# 構文ハイライト
     syntax enable
-"TAB, 行末スペースの表示
+# TAB, 行末スペースの表示
     set list
     set listchars=tab:^\ ,trail:~
-"括弧の強調
+# 括弧の強調
     set showmatch
-"タイトル表示
+# タイトル表示
     set title
-"行数表示
+# 行数表示
     set number
