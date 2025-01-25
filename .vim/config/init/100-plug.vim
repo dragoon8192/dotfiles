@@ -33,5 +33,7 @@ plug#begin(data_dir .. '/plugged')
     Plug 'lambdalisue/fern.vim'
     Plug 'utubo/vim-registers-lite'
     Plug 'junegunn/vim-plug'
+    Plug 'Shougo/unite.vim'
+    Plug 'Quramy/vison'
 plug#end()
 filetype plugin on
