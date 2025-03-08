@@ -53,11 +53,11 @@ augroup END
 
 # Vim
 if executable('vim-language-server')
-    augroup LspVim
+    augroup VimLS
         autocmd!
         autocmd User lsp_setup {
             lsp#register_server({
-                name:      'Vim-LS', 
+                name:      'VimLS', 
                 icon:      g:nerdIcons.vim, 
                 cmd:       ['vim-language-server', '--stdio'], 
                 allowlist: ['vim'], 
@@ -72,11 +72,11 @@ endif
 
 # Dockerfile
 if executable('docker-langserver')
-    augroup LspDocker
+    augroup DockerLS
         autocmd!
         autocmd User lsp_setup {
             lsp#register_server({
-                name: 'Docker LS', 
+                name: 'DockerLS', 
                 icon: g:nerdIcons.docker, 
                 cmd: ['docker-langserver', '--stdio'], 
                 allowlist: ['dockerfile']
@@ -87,11 +87,11 @@ endif
 
 # Bash, Zsh, Sh
 if executable('bash-language-server')
-    augroup LspBash
+    augroup BashLS
         autocmd!
         autocmd User lsp_setup {
             lsp#register_server({
-                name:      'Bash Language Server', 
+                name:      'BashLS', 
                 icon:      g:nerdIcons.bash, 
                 cmd:       ['bash-language-server'], 
                 allowlist: ['sh', 'bash', 'zsh']
@@ -102,11 +102,11 @@ endif
 
 # Rust
 if executable('rust-analyzer')
-    augroup LspRust
+    augroup RustLS
         autocmd!
         autocmd User lsp_setup {
             lsp#register_server({
-                name:      'Rust Language Server', 
+                name:      'RustLS', 
                 icon:      g:nerdIcons.rust, 
                 cmd:       ['rust-analyzer'], 
                 allowlist: ['rust'], 
@@ -125,21 +125,26 @@ if executable('rust-analyzer')
     augroup END
 endif
 
-# # Haskell
-# if executable('haskell-language-server-wrapper')
-#     augroup LspHaskell
-#         autocmd!
-#         autocmd User lsp_setup lsp#register_server({
-#         \   name:      'Haskell-LS',
-#         \   icon:      g:nerdIcons.haskell,
-#         \   cmd:       ['haskell-language-server-wrapper', '--lsp'],
-#         \   allowlist: ['haskell', 'lhaskell'],
-#         \   root_uri:  (server_info) => {
-#         \       return lsp#utils#path_to_uri( lsp#utils#find_nearest_parent_file_directory( lsp#utils#get_buffer_path(), ['.cabal', 'stack.yaml', 'cabal.project', 'package.yaml', 'hie.yaml', '.git'] ))
-#         \   }
-#         \   })
-#     augroup END
-# endif
+# Haskell
+if executable('haskell-language-server-wrapper')
+    augroup HaskellLS
+        autocmd!
+        autocmd User lsp_setup {
+            lsp#register_server({
+                name:      'HaskellLS', 
+                icon:      g:nerdIcons.haskell, 
+                cmd:       ['haskell-language-server-wrapper', '--lsp'], 
+                allowlist: ['haskell', 'lhaskell'], 
+                root_uri:  (server_info) => lsp#utils#path_to_uri(
+                    \       lsp#utils#find_nearest_parent_file_directory(
+                    \           lsp#utils#get_buffer_path(),
+                    \           ['.cabal', 'stack.yaml', 'cabal.project', 'package.yaml', 'hie.yaml', '.git']
+                    \       )
+                    \)
+            \})
+        }
+    augroup END
+endif
 
 # # JavaScript, TypeScript
 # if executable('typescript-language-server')
