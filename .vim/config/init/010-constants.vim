@@ -32,4 +32,5 @@ const g:nerdIcons = {
     'typescript':  '󰛦',
     'vim':         '',
     'bash':        '',
+    'docker':       '󰡨',
 }
